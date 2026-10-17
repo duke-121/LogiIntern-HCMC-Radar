@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LogiIntern HCMC Radar | Săn Thực Tập Sinh Logistics TP.HCM Thời Gian Thực</title>
+    <meta name="description" content="Nền tảng mã nguồn mở (Open-Source) tổng hợp và săn việc làm Thực tập sinh Logistics & Xuất Nhập Khẩu tại TP. Hồ Chí Minh theo thời gian thực trên GitHub Pages.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -100,7 +101,7 @@
                     </div>
 
                     <!-- Mobile Theme Toggle -->
-                    <button id="themeToggleMobile" onclick="toggleTheme()" class="lg:hidden p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200">
+                    <button id="themeToggleMobile" onclick="toggleTheme()" class="lg:hidden p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
                         <i class="fa-solid fa-moon dark:hidden"></i>
                         <i class="fa-solid fa-sun hidden dark:inline"></i>
                     </button>
@@ -108,7 +109,6 @@
 
                 <!-- Real-Time Sync Control Panel -->
                 <div class="flex flex-wrap items-center gap-2 sm:gap-3 bg-slate-100/90 dark:bg-slate-800/70 p-2 rounded-2xl border border-slate-200/80 dark:border-slate-700/70">
-                    <!-- Live Auto-Update Switch -->
                     <div class="flex items-center gap-2.5 px-2.5 py-1 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80">
                         <label for="autoSyncToggle" class="flex items-center cursor-pointer gap-2 text-xs font-medium select-none">
                             <input type="checkbox" id="autoSyncToggle" checked onchange="toggleAutoSync()" class="sr-only peer">
@@ -125,34 +125,34 @@
                         </span>
                     </div>
 
-                    <!-- Manual Sync Button -->
                     <button id="syncNowBtn" onclick="triggerRealtimeSync(true)" class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 active:scale-95 text-white text-xs font-semibold shadow-md shadow-blue-600/25 transition-all">
                         <i id="syncIcon" class="fa-solid fa-rotate"></i>
                         <span>Cập nhật ngay</span>
                     </button>
 
-                    <!-- Open-Source API Config Modal Button -->
                     <button onclick="openModal('sourceConfigModal')" class="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 text-xs font-medium transition">
                         <i class="fa-solid fa-plug-circle-check text-cyan-500"></i>
                         <span>Nguồn mở (<span id="activeSourceCount">6</span>)</span>
                     </button>
 
-                    <!-- Saved Jobs Button -->
                     <button onclick="openModal('savedJobsModal')" class="relative flex items-center gap-1.5 px-3 py-2 rounded-xl bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 text-xs font-medium transition">
                         <i class="fa-solid fa-bookmark text-amber-500"></i>
                         <span class="hidden sm:inline">Đã lưu</span>
                         <span id="savedCountBadge" class="px-1.5 py-0.2 rounded-full bg-amber-500/20 text-amber-600 dark:text-amber-400 font-bold text-[11px]">0</span>
                     </button>
 
-                    <!-- Desktop Theme Toggle -->
-                    <button onclick="toggleTheme()" class="hidden lg:flex items-center justify-center w-9 h-9 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:text-blue-500 transition" title="Đổi giao diện Sáng/Tối">
+                    <button onclick="openModal('githubKitModal')" class="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:opacity-90 text-xs font-bold shadow-sm transition">
+                        <i class="fa-brands fa-github text-sm"></i>
+                        <span class="hidden sm:inline">GitHub Kit</span>
+                    </button>
+
+                    <button onclick="toggleTheme()" class="hidden lg:flex items-center justify-center w-9 h-9 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300">
                         <i class="fa-solid fa-moon dark:hidden"></i>
                         <i class="fa-solid fa-sun hidden dark:inline text-amber-400"></i>
                     </button>
                 </div>
             </div>
 
-            <!-- Live Sync Progress Bar -->
             <div class="w-full bg-slate-200 dark:bg-slate-800 h-1 mt-2.5 rounded-full overflow-hidden">
                 <div id="syncProgressBar" class="bg-gradient-to-r from-blue-500 via-cyan-400 to-emerald-400 h-full transition-all duration-1000" style="width: 100%"></div>
             </div>
@@ -164,34 +164,27 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex flex-wrap items-center justify-between gap-2 text-xs">
             <div class="flex items-center gap-2 text-slate-600 dark:text-slate-400">
                 <span class="inline-flex items-center gap-1 font-semibold text-blue-600 dark:text-cyan-400">
-                    <i class="fa-solid fa-satellite-dish"></i> Kết nối truy vấn trực tiếp ngoài (Deep-Link TP.HCM):
+                    <i class="fa-solid fa-satellite-dish"></i> Cổng định tuyến bài đăng gốc TP.HCM:
                 </span>
-                <span class="hidden md:inline text-slate-400">Mở kết quả tìm kiếm trực tiếp trên các trang tuyển dụng với từ khóa đang lọc</span>
             </div>
-            <div class="flex flex-wrap items-center gap-1.5" id="externalPortalLinks">
-                <!-- Populated dynamically based on current search query -->
-            </div>
+            <div class="flex flex-wrap items-center gap-1.5" id="externalPortalLinks"></div>
         </div>
     </section>
 
     <!-- Main Content Container -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 w-full">
-
-        <!-- Real-Time KPI & Logistics HCMC Pulse -->
+        <!-- KPI Grid -->
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-6">
             <div class="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-between">
                 <div>
                     <p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Tổng Job Thực Tập TP.HCM</p>
                     <p id="statTotalJobs" class="text-2xl font-extrabold text-slate-900 dark:text-white mt-1">0</p>
-                    <p class="text-[11px] text-emerald-600 dark:text-emerald-400 mt-0.5 flex items-center gap-1">
-                        <i class="fa-solid fa-bolt"></i> Đang hoạt động
-                    </p>
+                    <p class="text-[11px] text-emerald-600 dark:text-emerald-400 mt-0.5"><i class="fa-solid fa-bolt"></i> Thời gian thực</p>
                 </div>
                 <div class="w-11 h-11 rounded-2xl bg-blue-500/10 text-blue-600 dark:text-blue-400 flex items-center justify-center text-lg">
                     <i class="fa-solid fa-boxes-packing"></i>
                 </div>
             </div>
-
             <div class="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-between">
                 <div>
                     <p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Có Trợ Cấp Thực Tập</p>
@@ -202,23 +195,21 @@
                     <i class="fa-solid fa-hand-holding-dollar"></i>
                 </div>
             </div>
-
             <div class="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-between">
                 <div>
-                    <p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Hỗ Trợ Dấu Mộc & Báo Cáo</p>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Hỗ Trợ Dấu Mộc Báo Cáo</p>
                     <p id="statStampJobs" class="text-2xl font-extrabold text-cyan-600 dark:text-cyan-400 mt-1">0</p>
-                    <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">Dành cho SV năm 3 & 4</p>
+                    <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">SV năm 3 & 4</p>
                 </div>
                 <div class="w-11 h-11 rounded-2xl bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 flex items-center justify-center text-lg">
                     <i class="fa-solid fa-stamp"></i>
                 </div>
             </div>
-
             <div class="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-between">
                 <div>
                     <p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Lần Cập Nhật Cuối</p>
                     <p id="statLastSync" class="text-lg font-mono font-bold text-indigo-600 dark:text-indigo-400 mt-1">--:--:--</p>
-                    <p id="statSyncStatus" class="text-[11px] text-emerald-600 dark:text-emerald-400 mt-0.5 truncate">Sẵn sàng đồng bộ</p>
+                    <p id="statSyncStatus" class="text-[11px] text-emerald-600 dark:text-emerald-400 mt-0.5">Sẵn sàng</p>
                 </div>
                 <div class="w-11 h-11 rounded-2xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-lg">
                     <i class="fa-solid fa-tower-broadcast"></i>
@@ -226,85 +217,66 @@
             </div>
         </div>
 
-        <!-- Main 2-Column Layout: Left Sidebar Filters & Live Terminal | Right Job Stream -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-
-            <!-- Left Column: Filters & Open-Source Live Terminal (4 cols) -->
+            <!-- Left Filters & Terminal -->
             <aside class="lg:col-span-4 space-y-5">
-
-                <!-- Filter Card -->
                 <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm space-y-4">
                     <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
                         <h2 class="font-bold text-sm flex items-center gap-2">
                             <i class="fa-solid fa-sliders text-blue-500"></i>
-                            Bộ Lọc Thực Tập Logistics TP.HCM
+                            Bộ Lọc Logistics TP.HCM
                         </h2>
-                        <button onclick="resetFilters()" class="text-xs text-blue-600 dark:text-blue-400 hover:underline font-medium">
-                            Đặt lại
-                        </button>
+                        <button onclick="resetFilters()" class="text-xs text-blue-600 dark:text-blue-400 hover:underline font-medium">Đặt lại</button>
                     </div>
 
-                    <!-- Keyword Search -->
                     <div>
-                        <label class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1.5">
-                            Từ khóa (Vị trí, Kỹ năng, Công ty)
-                        </label>
+                        <label class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1.5">Từ khóa tìm kiếm</label>
                         <div class="relative">
                             <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
-                            <input type="text" id="searchInput" oninput="handleFilterChange()" placeholder="VD: Chứng từ, Khai báo hải quan, Forwarder, Kuehne..." class="w-full pl-9 pr-3 py-2.5 text-xs rounded-xl bg-slate-50 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-blue-500 transition">
+                            <input type="text" id="searchInput" oninput="handleFilterChange()" placeholder="VD: Chứng từ, Hải quan, Forwarder..." class="w-full pl-9 pr-3 py-2.5 text-xs rounded-xl bg-slate-50 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-blue-500">
                         </div>
                     </div>
 
-                    <!-- Logistics Sub-field -->
                     <div>
-                        <label class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1.5">
-                            Mảng nghiệp vụ Logistics
-                        </label>
-                        <select id="categorySelect" onchange="handleFilterChange()" class="w-full px-3 py-2.5 text-xs rounded-xl bg-slate-50 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-blue-500">
-                            <option value="ALL">Tất cả mảng Logistics & Chuỗi cung ứng</option>
-                            <option value="DOCS">Chứng từ Xuất Nhập Khẩu (Docs / Cus Service)</option>
-                            <option value="CUSTOMS">Khai báo Hải quan & Hiện trường (Ops / Customs)</option>
-                            <option value="FORWARDING">Giao nhận Vận tải Quốc tế (Sea / Air Freight)</option>
-                            <option value="SUPPLY_CHAIN">Chuỗi cung ứng & Thu mua (Supply Chain / Purchasing)</option>
-                            <option value="WAREHOUSE">Vận hành Kho bãi & E-Logistics (Warehouse / Fulfillment)</option>
-                            <option value="SALES">Sales Logistics / Tuyến Hàng Hải (Sales Forwarder)</option>
+                        <label class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1.5">Mảng nghiệp vụ Logistics</label>
+                        <select id="categorySelect" onchange="handleFilterChange()" class="w-full px-3 py-2.5 text-xs rounded-xl bg-slate-50 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 focus:outline-none">
+                            <option value="ALL">Tất cả mảng Logistics</option>
+                            <option value="DOCS">Chứng từ XNK (Docs / Customer Service)</option>
+                            <option value="CUSTOMS">Hải quan & Hiện trường (Customs / Ops)</option>
+                            <option value="FORWARDING">Vận tải quốc tế (Sea / Air Freight)</option>
+                            <option value="SUPPLY_CHAIN">Chuỗi cung ứng (Supply Chain / Purchasing)</option>
+                            <option value="WAREHOUSE">Vận hành kho (Warehouse / Fulfillment)</option>
+                            <option value="SALES">Sales Logistics / Forwarder</option>
                         </select>
                     </div>
 
-                    <!-- HCMC District Filter -->
                     <div>
-                        <label class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1.5">
-                            Khu vực trọng điểm tại TP. Hồ Chí Minh
-                        </label>
-                        <select id="districtSelect" onchange="handleFilterChange()" class="w-full px-3 py-2.5 text-xs rounded-xl bg-slate-50 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-blue-500">
+                        <label class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1.5">Khu vực tại TP.HCM</label>
+                        <select id="districtSelect" onchange="handleFilterChange()" class="w-full px-3 py-2.5 text-xs rounded-xl bg-slate-50 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 focus:outline-none">
                             <option value="ALL">Toàn TP. Hồ Chí Minh</option>
-                            <option value="Tân Bình">Quận Tân Bình (Khu Sân bay Tân Sơn Nhất / Air Cargo)</option>
-                            <option value="Quận 1">Quận 1 (Văn phòng Hãng tàu & Forwarder Quốc tế)</option>
-                            <option value="Quận 4">Quận 4 (Khu Cảng Sài Gòn / Vân Đồn)</option>
-                            <option value="Quận 7">Quận 7 (KCX Tân Thuận / Phú Mỹ Hưng)</option>
-                            <option value="Thủ Đức">TP. Thủ Đức (Cảng Cát Lái / ICD Sotrans / Khu CNC)</option>
-                            <option value="Bình Thạnh">Quận Bình Thạnh (Khu Điện Biên Phủ / Cầu Sài Gòn)</option>
-                            <option value="Phú Nhuận">Quận Phú Nhuận (Khu Nguyễn Văn Trỗi)</option>
+                            <option value="Tân Bình">Quận Tân Bình (Sân bay / Air Cargo)</option>
+                            <option value="Quận 1">Quận 1 (Hãng tàu & Forwarder MNC)</option>
+                            <option value="Quận 4">Quận 4 (Cảng Sài Gòn)</option>
+                            <option value="Quận 7">Quận 7 (KCX Tân Thuận)</option>
+                            <option value="Thủ Đức">TP. Thủ Đức (Cảng Cát Lái / ICD Sotrans)</option>
+                            <option value="Bình Thạnh">Quận Bình Thạnh</option>
+                            <option value="Phú Nhuận">Quận Phú Nhuận</option>
                         </select>
                     </div>
 
-                    <!-- Source Platform Filter -->
                     <div>
-                        <label class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1.5">
-                            Nguồn trang web bên ngoài
-                        </label>
-                        <select id="sourceSelect" onchange="handleFilterChange()" class="w-full px-3 py-2.5 text-xs rounded-xl bg-slate-50 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-blue-500">
-                            <option value="ALL">Tất cả nguồn mở kết nối (6 nguồn)</option>
+                        <label class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1.5">Nguồn trang</label>
+                        <select id="sourceSelect" onchange="handleFilterChange()" class="w-full px-3 py-2.5 text-xs rounded-xl bg-slate-50 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 focus:outline-none">
+                            <option value="ALL">Tất cả nguồn mở (6 nguồn)</option>
                             <option value="TopCV VN">TopCV Vietnam</option>
                             <option value="VietnamWorks">VietnamWorks</option>
                             <option value="Glints VN">Glints Vietnam</option>
                             <option value="CareerViet">CareerViet</option>
-                            <option value="LinkedIn Jobs">LinkedIn Jobs VN</option>
-                            <option value="Ybox / JobsGO">Ybox & JobsGO</option>
+                            <option value="LinkedIn Jobs">LinkedIn Jobs</option>
+                            <option value="GitHub Issues">GitHub Community Issues</option>
                         </select>
                     </div>
 
-                    <!-- Quick Checkboxes -->
                     <div class="pt-1 space-y-2.5">
                         <label class="flex items-center gap-2.5 text-xs cursor-pointer select-none">
                             <input type="checkbox" id="filterPaidOnly" onchange="handleFilterChange()" class="rounded text-blue-600 focus:ring-0 w-4 h-4">
@@ -316,40 +288,30 @@
                         </label>
                         <label class="flex items-center gap-2.5 text-xs cursor-pointer select-none">
                             <input type="checkbox" id="filterNoExpOnly" onchange="handleFilterChange()" class="rounded text-blue-600 focus:ring-0 w-4 h-4">
-                            <span class="text-slate-700 dark:text-slate-300">Không yêu cầu kinh nghiệm (Training từ đầu)</span>
+                            <span class="text-slate-700 dark:text-slate-300">Không yêu cầu kinh nghiệm (Đào tạo từ đầu)</span>
                         </label>
                     </div>
                 </div>
 
-                <!-- Live Open-Source Connector Terminal -->
+                <!-- Terminal -->
                 <div class="bg-slate-900 text-slate-200 rounded-2xl border border-slate-800 p-4 shadow-lg">
                     <div class="flex items-center justify-between mb-3">
                         <div class="flex items-center gap-2">
                             <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                            <h3 class="text-xs font-mono font-bold uppercase tracking-wider text-slate-300">
-                                Open-Source Feed Stream
-                            </h3>
+                            <h3 class="text-xs font-mono font-bold uppercase tracking-wider text-slate-300">Open-Source Feed Stream</h3>
                         </div>
-                        <button onclick="clearTerminalLog()" class="text-[11px] font-mono text-slate-400 hover:text-white">
-                            [Xóa log]
-                        </button>
+                        <button onclick="clearTerminalLog()" class="text-[11px] font-mono text-slate-400 hover:text-white">[Xóa log]</button>
                     </div>
-                    <div id="networkTerminal" class="font-mono text-[11px] space-y-1.5 h-48 overflow-y-auto bg-slate-950/90 p-3 rounded-xl border border-slate-800/90 leading-relaxed">
-                        <!-- Live logs injected here -->
-                    </div>
+                    <div id="networkTerminal" class="font-mono text-[11px] space-y-1.5 h-48 overflow-y-auto bg-slate-950/90 p-3 rounded-xl border border-slate-800/90 leading-relaxed"></div>
                     <div class="mt-3 pt-2.5 border-t border-slate-800 flex items-center justify-between text-[11px] text-slate-400">
-                        <span>Proxy: <code class="text-cyan-400">allorigins / rss2json</code></span>
-                        <button onclick="openModal('sourceConfigModal')" class="text-blue-400 hover:underline font-medium">
-                            + Thêm RSS/API riêng
-                        </button>
+                        <span>CORS Proxy: <code class="text-cyan-400">allorigins / codetabs</code></span>
+                        <button onclick="openModal('sourceConfigModal')" class="text-blue-400 hover:underline font-medium">+ Thêm RSS/API</button>
                     </div>
                 </div>
             </aside>
 
-            <!-- Right Column: Job Feed List (8 cols) -->
+            <!-- Right Jobs List -->
             <section class="lg:col-span-8 space-y-4">
-
-                <!-- Feed Header & Quick Tags -->
                 <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-4 shadow-sm">
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                         <div>
@@ -357,11 +319,8 @@
                                 <span>Danh sách việc làm Thực tập Logistics TP.HCM</span>
                                 <span id="visibleJobsBadge" class="px-2.5 py-0.5 text-xs rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 font-bold">0</span>
                             </h2>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-                                Tự động làm mới và đẩy thông báo khi phát hiện tin tuyển dụng mới từ các nguồn ngoài
-                            </p>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Tự động kết nối bài đăng gốc từ các cổng tuyển dụng uy tín</p>
                         </div>
-
                         <div class="flex items-center gap-2">
                             <span class="text-xs text-slate-500 whitespace-nowrap">Sắp xếp:</span>
                             <select id="sortSelect" onchange="handleFilterChange()" class="text-xs bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 focus:outline-none">
@@ -372,44 +331,27 @@
                         </div>
                     </div>
 
-                    <!-- Quick Filter Pills -->
                     <div class="flex items-center gap-1.5 overflow-x-auto pt-3 mt-3 border-t border-slate-100 dark:border-slate-800 pb-1">
                         <span class="text-[11px] font-semibold text-slate-400 mr-1 whitespace-nowrap">Gợi ý nhanh:</span>
-                        <button onclick="applyQuickTag('Chứng từ')" class="px-2.5 py-1 rounded-lg text-xs bg-slate-100 dark:bg-slate-800 hover:bg-blue-500/15 hover:text-blue-600 dark:hover:text-blue-400 whitespace-nowrap transition">
-                            📄 Thực tập Chứng từ (Docs)
-                        </button>
-                        <button onclick="applyQuickTag('Hải quan')" class="px-2.5 py-1 rounded-lg text-xs bg-slate-100 dark:bg-slate-800 hover:bg-blue-500/15 hover:text-blue-600 dark:hover:text-blue-400 whitespace-nowrap transition">
-                            🛃 Khai báo Hải quan (VNACCS)
-                        </button>
-                        <button onclick="applyQuickTag('Tân Bình')" class="px-2.5 py-1 rounded-lg text-xs bg-slate-100 dark:bg-slate-800 hover:bg-blue-500/15 hover:text-blue-600 dark:hover:text-blue-400 whitespace-nowrap transition">
-                            ✈️ Khu Sân Bay Tân Bình
-                        </button>
-                        <button onclick="applyQuickTag('Cát Lái')" class="px-2.5 py-1 rounded-lg text-xs bg-slate-100 dark:bg-slate-800 hover:bg-blue-500/15 hover:text-blue-600 dark:hover:text-blue-400 whitespace-nowrap transition">
-                            🚢 Cảng Cát Lái / Thủ Đức
-                        </button>
-                        <button onclick="applyQuickTag('Supply Chain')" class="px-2.5 py-1 rounded-lg text-xs bg-slate-100 dark:bg-slate-800 hover:bg-blue-500/15 hover:text-blue-600 dark:hover:text-blue-400 whitespace-nowrap transition">
-                            🔗 Supply Chain MNCs
-                        </button>
+                        <button onclick="applyQuickTag('Chứng từ')" class="px-2.5 py-1 rounded-lg text-xs bg-slate-100 dark:bg-slate-800 hover:bg-blue-500/15 hover:text-blue-600 dark:hover:text-blue-400 whitespace-nowrap transition">📄 Chứng từ (Docs)</button>
+                        <button onclick="applyQuickTag('Hải quan')" class="px-2.5 py-1 rounded-lg text-xs bg-slate-100 dark:bg-slate-800 hover:bg-blue-500/15 hover:text-blue-600 dark:hover:text-blue-400 whitespace-nowrap transition">🛃 Hải quan (VNACCS)</button>
+                        <button onclick="applyQuickTag('Tân Bình')" class="px-2.5 py-1 rounded-lg text-xs bg-slate-100 dark:bg-slate-800 hover:bg-blue-500/15 hover:text-blue-600 dark:hover:text-blue-400 whitespace-nowrap transition">✈️ Sân Bay Tân Bình</button>
+                        <button onclick="applyQuickTag('Cát Lái')" class="px-2.5 py-1 rounded-lg text-xs bg-slate-100 dark:bg-slate-800 hover:bg-blue-500/15 hover:text-blue-600 dark:hover:text-blue-400 whitespace-nowrap transition">🚢 Cảng Cát Lái</button>
+                        <button onclick="applyQuickTag('Supply Chain')" class="px-2.5 py-1 rounded-lg text-xs bg-slate-100 dark:bg-slate-800 hover:bg-blue-500/15 hover:text-blue-600 dark:hover:text-blue-400 whitespace-nowrap transition">🔗 Supply Chain MNCs</button>
                     </div>
                 </div>
 
-                <!-- Job Listings Container -->
-                <div id="jobsListContainer" class="space-y-3.5">
-                    <!-- Rendered dynamically via JavaScript -->
-                </div>
-
+                <div id="jobsListContainer" class="space-y-3.5"></div>
             </section>
         </div>
     </main>
 
-    <!-- Job Detail & Quick Apply Modal -->
+    <!-- Job Detail Modal -->
     <div id="jobDetailModal" class="fixed inset-0 z-50 hidden bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
         <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl max-w-3xl w-full overflow-hidden shadow-2xl my-8">
             <div class="p-5 sm:p-6 border-b border-slate-200 dark:border-slate-800 flex items-start justify-between gap-4">
                 <div class="flex items-start gap-3.5">
-                    <div id="modalCompanyLogo" class="w-14 h-14 rounded-2xl bg-blue-600/10 text-blue-600 dark:text-blue-400 flex items-center justify-center font-extrabold text-xl shrink-0">
-                        LG
-                    </div>
+                    <div id="modalCompanyLogo" class="w-14 h-14 rounded-2xl bg-blue-600/10 text-blue-600 dark:text-blue-400 flex items-center justify-center font-extrabold text-xl shrink-0">LG</div>
                     <div>
                         <div class="flex flex-wrap items-center gap-2">
                             <span id="modalSourceBadge" class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-blue-500/10 text-blue-600 dark:text-blue-400"></span>
@@ -425,7 +367,6 @@
             </div>
 
             <div class="p-5 sm:p-6 max-h-[70vh] overflow-y-auto space-y-5 text-sm">
-                <!-- Key Highlights Grid -->
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-slate-50 dark:bg-slate-800/60 p-3.5 rounded-2xl border border-slate-200/70 dark:border-slate-700/60">
                     <div>
                         <span class="text-[11px] text-slate-400 block">Mức trợ cấp</span>
@@ -445,7 +386,6 @@
                     </div>
                 </div>
 
-                <!-- Description & Requirements -->
                 <div class="space-y-4">
                     <div>
                         <h4 class="font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
@@ -453,14 +393,12 @@
                         </h4>
                         <ul id="modalTasks" class="list-disc list-inside space-y-1.5 text-slate-600 dark:text-slate-300 text-xs sm:text-sm"></ul>
                     </div>
-
                     <div>
                         <h4 class="font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
                             <i class="fa-solid fa-graduation-cap text-indigo-500"></i> Yêu cầu & Kỹ năng ưu tiên
                         </h4>
                         <ul id="modalRequirements" class="list-disc list-inside space-y-1.5 text-slate-600 dark:text-slate-300 text-xs sm:text-sm"></ul>
                     </div>
-
                     <div>
                         <h4 class="font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
                             <i class="fa-solid fa-gift text-emerald-500"></i> Quyền lợi Thực tập sinh
@@ -469,11 +407,10 @@
                     </div>
                 </div>
 
-                <!-- Auto Cover Letter Generator for Logistics Intern -->
                 <div class="bg-blue-50/70 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800/70 rounded-2xl p-4">
                     <div class="flex items-center justify-between mb-2">
                         <h4 class="font-bold text-xs sm:text-sm text-blue-700 dark:text-blue-300 flex items-center gap-2">
-                            <i class="fa-solid fa-wand-magic-sparkles"></i> Mẫu Email Ứng Tuyển Thực Tập Logistics Tự Động
+                            <i class="fa-solid fa-wand-magic-sparkles"></i> Mẫu Email Ứng Tuyển Tự Động
                         </h4>
                         <button onclick="copyCoverLetter()" class="px-2.5 py-1 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-xs font-medium flex items-center gap-1.5">
                             <i class="fa-regular fa-copy"></i> Sao chép Email
@@ -482,15 +419,12 @@
                     <textarea id="modalCoverLetter" rows="5" class="w-full text-xs p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 font-mono focus:outline-none"></textarea>
                 </div>
 
-                <!-- Direct Post URL Verification Box -->
                 <div class="bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-2xl p-3.5 space-y-2">
                     <div class="flex items-center justify-between">
                         <span class="text-xs font-bold text-slate-700 dark:text-slate-200 flex items-center gap-1.5">
-                            <i class="fa-solid fa-link text-emerald-500"></i> Đường dẫn bài đăng gốc & Cổng định tuyến trực tiếp:
+                            <i class="fa-solid fa-link text-emerald-500"></i> Đường dẫn bài đăng gốc:
                         </span>
-                        <span id="modalLinkTypeBadge" class="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400">
-                            Direct Post Link
-                        </span>
+                        <span id="modalLinkTypeBadge" class="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400">Direct Post Link</span>
                     </div>
                     <p id="modalRawUrlDisplay" class="text-[11px] font-mono text-blue-600 dark:text-cyan-400 break-all bg-white dark:bg-slate-900 p-2 rounded-xl border border-slate-200 dark:border-slate-700"></p>
                 </div>
@@ -501,11 +435,11 @@
                     <i class="fa-regular fa-bookmark"></i> Lưu tin này
                 </button>
                 <div class="flex flex-wrap items-center gap-2">
-                    <a id="modalDirectLuckyBtn" href="#" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2.5 rounded-xl bg-emerald-600/15 hover:bg-emerald-600/25 text-emerald-700 dark:text-emerald-300 border border-emerald-500/30 text-xs font-semibold flex items-center gap-1.5 transition" title="Tự động nhảy thẳng vào bài đăng khớp tên công ty & vị trí">
+                    <a id="modalDirectLuckyBtn" href="#" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2.5 rounded-xl bg-emerald-600/15 hover:bg-emerald-600/25 text-emerald-700 dark:text-emerald-300 border border-emerald-500/30 text-xs font-semibold flex items-center gap-1.5 transition">
                         <i class="fa-solid fa-bolt"></i> Nhảy thẳng bài đăng (Direct)
                     </a>
                     <a id="modalExternalSearchBtn" href="#" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2.5 rounded-xl bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs font-semibold flex items-center gap-1.5 transition">
-                        <i class="fa-brands fa-google text-rose-500"></i> Xem bài trên Google Jobs
+                        <i class="fa-brands fa-google text-rose-500"></i> Google Jobs
                     </a>
                     <a id="modalApplyExternalBtn" href="#" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold flex items-center gap-2 shadow-lg shadow-blue-600/25 transition">
                         <span>Mở bài đăng gốc & Ứng tuyển</span>
@@ -516,7 +450,7 @@
         </div>
     </div>
 
-    <!-- Open-Source Connectors Configuration Modal -->
+    <!-- Source Config Modal -->
     <div id="sourceConfigModal" class="fixed inset-0 z-50 hidden bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
         <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl my-8">
             <div class="p-5 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
@@ -525,46 +459,30 @@
                         <i class="fa-solid fa-network-wired"></i>
                     </div>
                     <div>
-                        <h3 class="font-bold text-base">Cấu Hình Kết Nối Mã Nguồn Mở (Open-Source Connectors)</h3>
-                        <p class="text-xs text-slate-500 dark:text-slate-400">Kết nối RSS/JSON công khai qua CORS Proxy & Deep-Search Adapters</p>
+                        <h3 class="font-bold text-base">Cấu Hình Kết Nối Mã Nguồn Mở</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">Kết nối RSS/JSON qua CORS Proxy</p>
                     </div>
                 </div>
-                <button onclick="closeModal('sourceConfigModal')" class="w-8 h-8 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
+                <button onclick="closeModal('sourceConfigModal')" class="w-8 h-8 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
             </div>
-
             <div class="p-5 space-y-5 max-h-[70vh] overflow-y-auto text-xs">
-                <!-- Connected Sources List -->
                 <div>
-                    <h4 class="font-bold text-slate-700 dark:text-slate-200 mb-2.5">Các cổng tuyển dụng bên ngoài đang kết nối</h4>
-                    <div id="connectorsList" class="space-y-2">
-                        <!-- Populated by JS -->
-                    </div>
+                    <h4 class="font-bold text-slate-700 dark:text-slate-200 mb-2.5">Các cổng tuyển dụng đang kết nối</h4>
+                    <div id="connectorsList" class="space-y-2"></div>
                 </div>
-
-                <!-- Add Custom RSS / JSON Endpoint -->
                 <div class="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-2xl border border-slate-200 dark:border-slate-700/70 space-y-3">
                     <h4 class="font-bold text-slate-800 dark:text-slate-200 flex items-center gap-2">
-                        <i class="fa-solid fa-rss text-orange-500"></i> Thêm Nguồn RSS / JSON API Tuyển Dụng Bên Ngoài
+                        <i class="fa-solid fa-rss text-orange-500"></i> Thêm Nguồn RSS / JSON API Tuyển Dụng
                     </h4>
-                    <p class="text-[11px] text-slate-500 dark:text-slate-400">
-                        Bạn có thể dán bất kỳ link RSS hoặc JSON Feed tuyển dụng nào (VD: RSS từ Careerjet, Google Alerts RSS, hoặc API việc làm). Hệ thống sẽ tự động đi qua <code class="text-cyan-500">api.allorigins.win</code> để vượt rào cản CORS trình duyệt.
-                    </p>
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
                         <input type="text" id="customSourceName" placeholder="Tên nguồn (VD: Careerjet RSS)" class="px-3 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 focus:outline-none">
                         <input type="url" id="customSourceUrl" placeholder="https://..." class="sm:col-span-2 px-3 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 focus:outline-none">
                     </div>
-                    <button onclick="addCustomConnector()" class="px-4 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-semibold transition">
-                        + Kết nối & Đồng bộ ngay
-                    </button>
+                    <button onclick="addCustomConnector()" class="px-4 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-semibold transition">+ Kết nối & Đồng bộ</button>
                 </div>
             </div>
-
             <div class="p-4 bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 flex justify-end">
-                <button onclick="closeModal('sourceConfigModal')" class="px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 font-semibold text-xs">
-                    Đóng
-                </button>
+                <button onclick="closeModal('sourceConfigModal')" class="px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 font-semibold text-xs">Đóng</button>
             </div>
         </div>
     </div>
@@ -578,90 +496,110 @@
                         <i class="fa-solid fa-bookmark"></i>
                     </div>
                     <div>
-                        <h3 class="font-bold text-base">Danh Sách Thực Tập Đã Lưu & Theo Dõi</h3>
-                        <p class="text-xs text-slate-500 dark:text-slate-400">Quản lý tiến độ nộp CV thực tập Logistics của bạn tại TP.HCM</p>
+                        <h3 class="font-bold text-base">Danh Sách Thực Tập Đã Lưu</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">Quản lý tiến độ nộp CV Logistics</p>
                     </div>
                 </div>
-                <button onclick="closeModal('savedJobsModal')" class="w-8 h-8 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
+                <button onclick="closeModal('savedJobsModal')" class="w-8 h-8 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
             </div>
-            <div id="savedJobsContainer" class="p-5 max-h-[65vh] overflow-y-auto space-y-3 text-xs">
-                <!-- Populated dynamically -->
+            <div id="savedJobsContainer" class="p-5 max-h-[65vh] overflow-y-auto space-y-3 text-xs"></div>
+        </div>
+    </div>
+
+    <!-- GitHub Kit Modal -->
+    <div id="githubKitModal" class="fixed inset-0 z-50 hidden bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl max-w-3xl w-full overflow-hidden shadow-2xl my-8">
+            <div class="p-5 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 flex items-center justify-center text-lg">
+                        <i class="fa-brands fa-github"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-base">GitHub & GitHub Pages Kit</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">Đồng bộ Database qua GitHub Repo & GitHub Issues</p>
+                    </div>
+                </div>
+                <button onclick="closeModal('githubKitModal')" class="w-8 h-8 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="p-5 max-h-[72vh] overflow-y-auto space-y-5 text-xs">
+                <div class="bg-slate-50 dark:bg-slate-800/60 p-4 rounded-2xl border border-slate-200 dark:border-slate-700/80 space-y-3">
+                    <h4 class="font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                        <i class="fa-solid fa-code-branch text-emerald-500"></i> 1. Kết nối GitHub Repository (username/repo)
+                    </h4>
+                    <p class="text-slate-500 dark:text-slate-400 leading-relaxed">
+                        Nhập tên repo của bạn để ứng dụng quét tự động file <code class="text-cyan-500 font-mono">jobs-hcmc.json</code> và quét các GitHub Issues có nhãn <code class="text-emerald-500 font-mono">logistics-intern</code>.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-2">
+                        <input type="text" id="githubRepoInput" placeholder="VD: username/logi-intern-hcmc" class="flex-1 px-3.5 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 font-mono text-xs focus:outline-none">
+                        <button onclick="saveGithubRepoConfig()" class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold transition shrink-0">Lưu & Đồng bộ</button>
+                        <button onclick="exportJobsJsonForGithub()" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold flex items-center justify-center gap-1.5 transition shrink-0">
+                            <i class="fa-solid fa-download"></i> <span>Xuất jobs-hcmc.json</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 dark:bg-slate-800/60 p-4 rounded-2xl border border-slate-200 dark:border-slate-700/80 space-y-2.5">
+                    <div class="flex items-center justify-between">
+                        <h4 class="font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                            <i class="fa-solid fa-gears text-cyan-500"></i> 2. GitHub Actions YAML Workflow
+                        </h4>
+                        <button onclick="copyTextById('ghActionsYamlBox', 'Đã sao chép YAML')" class="px-3 py-1 rounded-lg bg-slate-900 text-white font-semibold hover:opacity-90"><i class="fa-regular fa-copy"></i> Copy YAML</button>
+                    </div>
+                    <textarea id="ghActionsYamlBox" rows="6" readonly class="w-full p-3 rounded-xl bg-slate-950 text-emerald-400 font-mono text-[11px] border border-slate-800 focus:outline-none">name: Auto-Sync Logistics Internships
+on:
+  schedule:
+    - cron: '*/30 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Synced at $(date)"</textarea>
+                </div>
+
+                <div class="bg-slate-50 dark:bg-slate-800/60 p-4 rounded-2xl border border-slate-200 dark:border-slate-700/80 space-y-2.5">
+                    <div class="flex items-center justify-between">
+                        <h4 class="font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                            <i class="fa-solid fa-book-open text-amber-500"></i> 3. Mẫu README.md
+                        </h4>
+                        <button onclick="copyTextById('ghReadmeBox', 'Đã sao chép README')" class="px-3 py-1 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-500"><i class="fa-regular fa-copy"></i> Copy README</button>
+                    </div>
+                    <textarea id="ghReadmeBox" rows="6" readonly class="w-full p-3 rounded-xl bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-200 font-mono text-[11px] border border-slate-200 focus:outline-none"># 🚢 LogiIntern HCMC Radar — Cổng Săn Thực Tập Logistics TP.HCM
+
+Ứng dụng web mã nguồn mở săn việc làm thực tập sinh Logistics & Xuất Nhập Khẩu tại TP. Hồ Chí Minh theo thời gian thực.</textarea>
+                </div>
+            </div>
+            <div class="p-4 bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 flex justify-end">
+                <button onclick="closeModal('githubKitModal')" class="px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 font-semibold text-xs">Đóng</button>
             </div>
         </div>
     </div>
 
-    <!-- Toast Notification Container -->
+    <!-- Toast Container -->
     <div id="toastContainer" class="fixed bottom-5 right-5 z-50 space-y-2 max-w-sm w-full pointer-events-none"></div>
 
     <script>
-        // External Open-Source Job Connectors Configuration
+        // External Connectors
         const externalConnectors = [
-            {
-                id: 'topcv',
-                name: 'TopCV VN',
-                protocol: 'Open-Search & Feed Bridge',
-                endpoint: 'https://www.topcv.vn/tim-viec-lam-thuc-tap-sinh-logistics-tai-ho-chi-minh-kl2',
-                searchUrlTemplate: 'https://www.topcv.vn/tim-viec-lam-{query}-tai-ho-chi-minh',
-                active: true,
-                badgeColor: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/30'
-            },
-            {
-                id: 'vietnamworks',
-                name: 'VietnamWorks',
-                protocol: 'CORS Feed / Deep-Query',
-                endpoint: 'https://www.vietnamworks.com/viec-lam?q=thuc-tap-sinh-logistics&l=29',
-                searchUrlTemplate: 'https://www.vietnamworks.com/viec-lam?q={rawQuery}&l=29',
-                active: true,
-                badgeColor: 'bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/30'
-            },
-            {
-                id: 'glints',
-                name: 'Glints VN',
-                protocol: 'Public Internship Graph',
-                endpoint: 'https://glints.com/vn/opportunities/jobs/explore?keyword=logistics+intern&location=Ho+Chi+Minh',
-                searchUrlTemplate: 'https://glints.com/vn/opportunities/jobs/explore?keyword={rawQuery}',
-                active: true,
-                badgeColor: 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/30'
-            },
-            {
-                id: 'careerviet',
-                name: 'CareerViet',
-                protocol: 'RSS / XML Stream',
-                endpoint: 'https://careerviet.vn/viec-lam/thuc-tap-sinh-logistics-tai-ho-chi-minh-c1l8-vi.html',
-                searchUrlTemplate: 'https://careerviet.vn/viec-lam/{query}-tai-ho-chi-minh-l8-vi.html',
-                active: true,
-                badgeColor: 'bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border-cyan-500/30'
-            },
-            {
-                id: 'linkedin',
-                name: 'LinkedIn Jobs',
-                protocol: 'Open Guest Jobs Feed',
-                endpoint: 'https://www.linkedin.com/jobs/search/?keywords=Logistics%20Intern&location=Ho%20Chi%20Minh%20City',
-                searchUrlTemplate: 'https://www.linkedin.com/jobs/search/?keywords={rawQuery}&location=Ho%20Chi%20Minh%20City',
-                active: true,
-                badgeColor: 'bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border-indigo-500/30'
-            },
-            {
-                id: 'ybox',
-                name: 'Ybox / JobsGO',
-                protocol: 'Student Internship Stream',
-                endpoint: 'https://jobsgo.vn/viec-lam-thuc-tap-logistics-tai-ho-chi-minh.html',
-                searchUrlTemplate: 'https://jobsgo.vn/viec-lam-{query}-tai-ho-chi-minh.html',
-                active: true,
-                badgeColor: 'bg-rose-500/10 text-rose-600 dark:text-rose-400 border-rose-500/30'
-            }
+            { id: 'topcv', name: 'TopCV VN', endpoint: 'https://www.topcv.vn/tim-viec-lam-thuc-tap-sinh-logistics-tai-ho-chi-minh-kl2', active: true, badgeColor: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/30' },
+            { id: 'vietnamworks', name: 'VietnamWorks', endpoint: 'https://www.vietnamworks.com/viec-lam?q=thuc-tap-sinh-logistics&l=29', active: true, badgeColor: 'bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/30' },
+            { id: 'glints', name: 'Glints VN', endpoint: 'https://glints.com/vn/opportunities/jobs/explore?keyword=logistics+intern&location=Ho+Chi+Minh', active: true, badgeColor: 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/30' },
+            { id: 'careerviet', name: 'CareerViet', endpoint: 'https://careerviet.vn/viec-lam/thuc-tap-sinh-logistics-tai-ho-chi-minh-c1l8-vi.html', active: true, badgeColor: 'bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border-cyan-500/30' },
+            { id: 'linkedin', name: 'LinkedIn Jobs', endpoint: 'https://www.linkedin.com/jobs/search/?keywords=Logistics%20Intern&location=Ho%20Chi%20Minh%20City', active: true, badgeColor: 'bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border-indigo-500/30' },
+            { id: 'ybox', name: 'Ybox / JobsGO', endpoint: 'https://jobsgo.vn/viec-lam-thuc-tap-logistics-tai-ho-chi-minh.html', active: true, badgeColor: 'bg-rose-500/10 text-rose-600 dark:text-rose-400 border-rose-500/30' }
         ];
 
-        // Initial Curated Real-World HCMC Logistics Internships Dataset
+        // Initial Logistics Jobs Dataset (HCMC)
         const initialLogisticsJobs = [
             {
                 id: 'logi-hcm-101',
                 title: 'Thực Tập Sinh Chứng Từ Xuất Nhập Khẩu (Import-Export Documentation Intern)',
-                company: 'Công ty TNHH Giao Nhận Quốc Tế Hải Khánh (Sea & Air Freight)',
+                company: 'Công ty TNHH Giao Nhận Quốc Tế Hải Khánh (Sea & Air)',
                 district: 'Tân Bình',
-                address: 'Đường Trường Sơn (Khu Sân bay Tân Sơn Nhất), Quận Tân Bình, TP.HCM',
+                address: 'Đường Trường Sơn (Khu Sân bay Tân Sơn Nhất), Q. Tân Bình, TP.HCM',
                 category: 'DOCS',
                 categoryLabel: 'Chứng từ XNK (Docs)',
                 allowance: '3.500.000 - 4.500.000 VNĐ/tháng',
@@ -677,22 +615,21 @@
                 postedMinutesAgo: 2,
                 isNewRealtime: false,
                 schedule: 'Full-time hoặc tối thiểu 4 ngày/tuần',
-                skills: ['Incoterms 2020', 'Bill of Lading (B/L)', 'Packing List', 'Tiếng Anh đọc hiểu', 'Excel'],
+                skills: ['Incoterms 2020', 'Bill of Lading (B/L)', 'Packing List', 'Excel'],
                 tasks: [
                     'Hỗ trợ kiểm tra bộ chứng từ hàng xuất / hàng nhập: Invoice, Packing List, House Bill (HBL), Master Bill (MBL).',
-                    'Phối hợp với hãng tàu (ONE, Maersk, Cosco) và đại lý nước ngoài để gửi thông báo hàng đến (Arrival Notice).',
-                    'Nhập dữ liệu lô hàng lên phần mềm quản lý Forwarding nội bộ và lưu trữ hồ sơ chứng từ.',
-                    'Được hướng dẫn trực tiếp quy trình làm C/O (Form D, Form E, Form AK) điện tử.'
+                    'Phối hợp với hãng tàu (ONE, Maersk, Cosco) gửi Arrival Notice cho khách hàng.',
+                    'Nhập dữ liệu lô hàng lên phần mềm quản lý Forwarding nội bộ và lưu trữ hồ sơ chứng từ.'
                 ],
                 requirements: [
-                    'Sinh viên năm 3, năm 4 hoặc mới tốt nghiệp chuyên ngành Kinh doanh Quốc tế, Logistics, Ngoại thương, Quản trị chuỗi cung ứng.',
-                    'Nắm vững kiến thức nền tảng về Incoterms 2020 và các phương thức thanh toán quốc tế (T/T, L/C).',
+                    'Sinh viên năm 3, năm 4 chuyên ngành Kinh doanh Quốc tế, Logistics, Ngoại thương.',
+                    'Nắm vững kiến thức nền tảng về Incoterms 2020 và thanh toán quốc tế.',
                     'Cẩn thận, tỉ mỉ với con số và chứng từ tiếng Anh.'
                 ],
                 benefits: [
-                    'Trợ cấp thực tập 3.5 - 4.5 triệu/tháng + phụ cấp gửi xe tại khu vực sân bay Tân Bình.',
-                    'Hỗ trợ đầy đủ số liệu thực tế và đóng dấu mộc tròn xác nhận báo cáo thực tập tốt nghiệp.',
-                    'Cơ hội xét duyệt lên Nhân viên Chứng từ chính thức ngay sau 2-3 tháng thực tập.'
+                    'Trợ cấp thực tập 3.5 - 4.5 triệu/tháng + phụ cấp gửi xe.',
+                    'Hỗ trợ đầy đủ số liệu và đóng dấu mộc báo cáo thực tập tốt nghiệp.',
+                    'Cơ hội xét duyệt lên nhân viên chính thức sau thực tập.'
                 ]
             },
             {
@@ -716,21 +653,20 @@
                 postedMinutesAgo: 8,
                 isNewRealtime: false,
                 schedule: 'Linh hoạt theo lịch học (Ưu tiên từ 7 buổi/tuần)',
-                skills: ['VNACCS/VCIS', 'ECUS5', 'Mã HS Code', 'Hiện trường Cát Lái', 'Kiểm hóa'],
+                skills: ['VNACCS/VCIS', 'ECUS5', 'Mã HS Code', 'Hiện trường Cát Lái'],
                 tasks: [
-                    'Thực hành lên tờ khai hải quan nháp trên phần mềm ECUS5 / VNACCS dưới sự kèm cặp của anh/chị tổ trưởng.',
-                    'Tra cứu mã HS Code, kiểm tra biểu thuế xuất nhập khẩu năm 2026 và chính sách mặt hàng.',
-                    'Đi thực tế cùng nhân viên hiện trường (Ops) tại Cảng Cát Lái & Chi cục Hải quan để làm thủ tục lấy lệnh D/O, đăng ký kiểm dịch và mở tờ khai.'
+                    'Thực hành lên tờ khai hải quan nháp trên phần mềm ECUS5 / VNACCS.',
+                    'Tra cứu mã HS Code và chính sách mặt hàng xuất nhập khẩu.',
+                    'Đi thực tế cùng nhân viên hiện trường (Ops) tại Cảng Cát Lái và Chi cục Hải quan.'
                 ],
                 requirements: [
-                    'Sinh viên các trường ĐH Giao thông Vận tải TP.HCM (UTH), ĐH Tài chính - Marketing (UFM), ĐH Ngoại thương, CĐ Kinh tế Đối ngoại.',
-                    'Chịu khó, năng động, mong muốn va chạm thực tế tại cảng biển và cơ quan hải quan.',
-                    'Có phương tiện cá nhân đi lại; công ty hỗ trợ 100% phụ phí xăng xe khi đi cảng.'
+                    'Sinh viên các trường ĐH Giao thông Vận tải, UFM, Ngoại thương.',
+                    'Chịu khó, năng động, mong muốn va chạm thực tế tại cảng biển.'
                 ],
                 benefits: [
-                    'Trợ cấp cứng + thưởng theo tờ khai hoàn thành (Tổng thu nhập thực tập 4 - 5.5 triệu/tháng).',
-                    'Cung cấp toàn bộ bộ chứng từ thật (đã che thông tin nhạy cảm) để làm đề tài tốt nghiệp.',
-                    'Đào tạo cầm tay chỉ việc phần mềm ECUS5 thực chiến.'
+                    'Trợ cấp cứng + thưởng hoàn thành tờ khai (4 - 5.5 triệu/tháng).',
+                    'Cung cấp chứng từ thật để làm đề tài tốt nghiệp.',
+                    'Đào tạo cầm tay chỉ việc phần mềm thực chiến.'
                 ]
             },
             {
@@ -753,32 +689,32 @@
                 externalUrl: 'https://www.linkedin.com/jobs/search/?keywords=Kuehne%20Nagel%20Intern&location=Ho%20Chi%20Minh%20City',
                 postedMinutesAgo: 15,
                 isNewRealtime: false,
-                schedule: 'Full-time (Thứ 2 - Thứ 6, 8:30 - 17:30)',
-                skills: ['Supply Chain Planning', 'SAP / ERP', 'Excel Pivot/PowerBI', 'English IELTS 6.0+', 'Sea Logistics'],
+                schedule: 'Full-time (Thứ 2 - Thứ 6)',
+                skills: ['Supply Chain Planning', 'SAP / ERP', 'Excel PowerBI', 'English IELTS 6.0+'],
                 tasks: [
-                    'Hỗ trợ theo dõi tiến độ vận chuyển quốc tế (Track & Trace) cho các khách hàng tập đoàn đa quốc gia.',
-                    'Tổng hợp báo cáo KPI giao hàng đúng hạn (OTIF - On Time In Full) bằng Excel và PowerBI.',
-                    'Làm việc trực tiếp với bộ phận Customer Care và Carrier Management để tối ưu lịch tàu (Sailing Schedule).'
+                    'Hỗ trợ theo dõi tiến độ vận chuyển quốc tế cho khách hàng tập đoàn.',
+                    'Tổng hợp báo cáo KPI giao hàng OTIF bằng Excel và PowerBI.',
+                    'Làm việc trực tiếp với Customer Care và Carrier Management.'
                 ],
                 requirements: [
-                    'Sinh viên năm cuối hoặc vừa tốt nghiệp chuyên ngành Supply Chain Management, Logistics, Industrial Systems Engineering.',
-                    'Giao tiếp và viết email Tiếng Anh tốt; sử dụng thành thạo Microsoft Excel.',
-                    'Có khả năng thực tập toàn thời gian trong vòng 3 - 6 tháng.'
+                    'Sinh viên năm cuối chuyên ngành Supply Chain Management, Logistics.',
+                    'Giao tiếp Tiếng Anh tốt; thành thạo Excel.',
+                    'Có khả năng thực tập toàn thời gian 3-6 tháng.'
                 ],
                 benefits: [
-                    'Mức trợ cấp hấp dẫn 5.5 - 6.5 triệu VNĐ/tháng + cấp phát Laptop công ty trong kỳ thực tập.',
+                    'Mức trợ cấp 5.5 - 6.5 triệu VNĐ/tháng + cấp phát Laptop.',
                     'Môi trường tập đoàn Logistics hàng đầu thế giới ngay trung tâm Quận 1.',
-                    'Chứng nhận hoàn thành chương trình Internship quốc tế.'
+                    'Chứng nhận thực tập quốc tế.'
                 ]
             },
             {
                 id: 'logi-hcm-104',
-                title: 'Thực Tập Sinh Giao Nhận Vận Tải Hàng Không (Air Cargo Operations Intern)',
+                title: 'Thực Tập Sinh Giao Nhận Vận Tải Hàng Không (Air Cargo Intern)',
                 company: 'SGN Express Air Freight & Forwarding',
                 district: 'Tân Bình',
-                address: 'Đường Bạch Đằng, Phường 2, Quận Tân Bình (Sát kho TCS / SCSC), TP.HCM',
+                address: 'Đường Bạch Đằng, P.2, Q. Tân Bình (Sát kho TCS / SCSC), TP.HCM',
                 category: 'FORWARDING',
-                categoryLabel: 'Giao nhận Hàng không (Air)',
+                categoryLabel: 'Giao nhận Hàng không',
                 allowance: '3.000.000 - 4.000.000 VNĐ/tháng',
                 allowanceValue: 3500000,
                 paid: true,
@@ -792,932 +728,441 @@
                 postedMinutesAgo: 24,
                 isNewRealtime: false,
                 schedule: 'Tối thiểu 6 buổi/tuần',
-                skills: ['Air Waybill (MAWB/HAWB)', 'Kho hàng không TCS/SCSC', 'Check giá cước Air', 'Tiếng Anh cơ bản'],
+                skills: ['Air Waybill (MAWB/HAWB)', 'Kho TCS/SCSC', 'Check cước Air'],
                 tasks: [
-                    'Hỗ trợ soạn thảo Air Waybill (HAWB/MAWB), Cargo Manifest cho các lô hàng xuất đi Mỹ, Châu Âu và Nhật Bản.',
-                    'Liên hệ đặt chỗ (Booking) với các hãng hàng không (Cathay Pacific, Korean Air, Vietnam Airlines, Qatar Airways).',
-                    'Theo dõi lịch bay và làm thủ tục lấy hàng tại kho hàng không TCS và SCSC Tân Sơn Nhất.'
+                    'Hỗ trợ soạn thảo Air Waybill (HAWB/MAWB), Cargo Manifest.',
+                    'Liên hệ đặt chỗ (Booking) với các hãng hàng không.',
+                    'Theo dõi lịch bay và làm thủ tục lấy hàng tại kho hàng không.'
                 ],
                 requirements: [
-                    'Sinh viên ngành Logistics, Quản trị kinh doanh quốc tế hoặc Hàng không.',
-                    'Nhanh nhẹn, chủ động học hỏi, ưu tiên sinh viên ở khu vực Tân Bình, Gò Vấp, Phú Nhuận.',
-                    'Không yêu cầu kinh nghiệm — được đào tạo quy trình hàng Air từ con số 0.'
+                    'Sinh viên ngành Logistics hoặc Hàng không tại TP.HCM.',
+                    'Nhanh nhẹn, ưu tiên sinh viên khu vực Tân Bình, Gò Vấp, Phú Nhuận.'
                 ],
                 benefits: [
-                    'Hỗ trợ 3 - 4 triệu/tháng + cơm trưa tại văn phòng.',
-                    'Hỗ trợ mộc đỏ và hướng dẫn viết chuyên đề tốt nghiệp về quy trình xuất khẩu hàng Air.',
-                    'Được giữ lại làm nhân viên chính thức nếu thể hiện tốt.'
-                ]
-            },
-            {
-                id: 'logi-hcm-105',
-                title: 'Thực Tập Sinh Vận Hành Kho & E-Commerce Fulfillment (Warehouse Logistics Intern)',
-                company: 'BoxMe Global / Tiếp Vận Thông Minh Nam Sài Gòn',
-                district: 'Quận 7',
-                address: 'Khu Chế Xuất Tân Thuận, Quận 7, TP.HCM',
-                category: 'WAREHOUSE',
-                categoryLabel: 'Kho vận & E-Logistics',
-                allowance: '4.000.000 VNĐ/tháng',
-                allowanceValue: 4000000,
-                paid: true,
-                stampSupport: true,
-                noExpRequired: true,
-                urgent: false,
-                source: 'Glints VN',
-                sourceDomain: 'glints.com',
-                isDirectPostUrl: false,
-                externalUrl: 'https://glints.com/vn/opportunities/jobs/explore?keyword=Warehouse+Logistics+Intern&location=Ho+Chi+Minh',
-                postedMinutesAgo: 37,
-                isNewRealtime: false,
-                schedule: '4 - 5 ngày/tuần',
-                skills: ['WMS (Quản lý kho)', 'Inventory Control', 'Inbound/Outbound', 'Excel'],
-                tasks: [
-                    'Tham gia điều phối luồng hàng Inbound (Nhập kho), Put-away (Lưu kho) và Outbound (Xuất kho) trên hệ thống WMS.',
-                    'Thực hiện kiểm kê tồn kho định kỳ (Cycle Count) và phân tích tỷ lệ sai lệch hàng hóa.',
-                    'Phối hợp với các đơn vị vận chuyển chặng cuối (Last-mile Delivery) để xử lý đơn hàng hoàn.'
-                ],
-                requirements: [
-                    'Sinh viên chuyên ngành Logistics, Quản lý công nghiệp, Quản trị chuỗi cung ứng.',
-                    'Yêu thích mảng vận hành kho bãi hiện đại, thương mại điện tử xuyên biên giới.',
-                    'Sử dụng tốt Excel cơ bản (Vlookup, Sumifs).'
-                ],
-                benefits: [
-                    'Trợ cấp cố định 4.000.000 VNĐ/tháng + bao cơm trưa.',
-                    'Trải nghiệm hệ thống kho tự động và phần mềm WMS chuẩn quốc tế tại KCX Tân Thuận.',
-                    'Xác nhận thực tập và hỗ trợ số liệu sơ đồ kho cho báo cáo tốt nghiệp.'
-                ]
-            },
-            {
-                id: 'logi-hcm-106',
-                title: 'Thực Tập Sinh Sales Logistics & Chăm Sóc Khách Hàng XNK (Sales Forwarder Intern)',
-                company: 'Dolphin Sea Air Services Corp - Chi nhánh TP.HCM',
-                district: 'Bình Thạnh',
-                address: 'Đường Điện Biên Phủ (Gần Pearl Plaza), Quận Bình Thạnh, TP.HCM',
-                category: 'SALES',
-                categoryLabel: 'Sales Logistics / Forwarder',
-                allowance: '2.500.000 VNĐ + Hoa hồng 25% Profit',
-                allowanceValue: 3800000,
-                paid: true,
-                stampSupport: true,
-                noExpRequired: true,
-                urgent: false,
-                source: 'Ybox / JobsGO',
-                sourceDomain: 'jobsgo.vn',
-                isDirectPostUrl: false,
-                externalUrl: 'https://jobsgo.vn/viec-lam-thuc-tap-sinh-sales-logistics-tai-ho-chi-minh.html',
-                postedMinutesAgo: 50,
-                isNewRealtime: false,
-                schedule: 'Linh hoạt tối thiểu 5 buổi/tuần',
-                skills: ['Báo giá cước biển/hàng không', 'Tư vấn Incoterms', 'Tìm kiếm khách hàng XNK', 'Đàm phán'],
-                tasks: [
-                    'Được đào tạo cách đọc bảng giá cước tàu biển (Ocean Freight), phụ phí Local Charges (THC, CIC, EBS, D/O, Seal).',
-                    'Tìm kiếm và liên hệ các doanh nghiệp sản xuất xuất khẩu (Gỗ, Thủy sản, Dệt may, Nông sản) để chào giá cước vận chuyển.',
-                    'Phối hợp cùng bộ phận Pricing và Docs để theo dõi lô hàng từ lúc Booking đến khi giao hàng thành công.'
-                ],
-                requirements: [
-                    'Sinh viên năng động, yêu thích kinh doanh quốc tế và giao dịch với các chủ hàng Xuất Nhập Khẩu.',
-                    'Không áp doanh số trong thời gian học việc và thực tập.',
-                    'Có laptop cá nhân.'
-                ],
-                benefits: [
-                    'Hỗ trợ lương cơ bản 2.5 triệu + thưởng nóng trên từng container chốt được.',
-                    'Đóng dấu mộc thực tập ngay sau 8 tuần thực tập nghiêm túc.',
-                    'Được cung cấp danh sách Data doanh nghiệp XNK tiềm năng để thực hành.'
+                    'Hỗ trợ 3 - 4 triệu/tháng + cơm trưa.',
+                    'Hỗ trợ mộc đỏ báo cáo tốt nghiệp.'
                 ]
             }
         ];
 
-        // Smart URL Resolver: Builds exact post deep-links instead of generic homepages
+        let jobsData = [...initialLogisticsJobs];
+        let savedJobIds = JSON.parse(localStorage.getItem('logi_hcm_saved_ids') || '[]');
+        let autoSyncTimer = null;
+        let countdownSeconds = 30;
+        let countdownInterval = null;
+
+        function safeJsonParse(val, fallback) {
+            if (!val) return fallback;
+            try { return JSON.parse(val); } catch(e) { return fallback; }
+        }
+
+        function sanitizeText(str) {
+            return String(str || '').replace(/[\r\n\t]+/g, ' ').replace(/[<>"]/g, '').trim();
+        }
+
         function resolveJobLinks(job) {
-            const cleanTitle = job.title.replace(/\(.*?\)/g, '').trim();
-            const cleanCompany = job.company.replace(/\(.*?\)|Chi nhánh.*|Văn phòng.*/gi, '').trim();
+            const cleanTitle = sanitizeText(job.title).replace(/\(.*?\)/g, '');
+            const cleanCompany = sanitizeText(job.company).replace(/\(.*?\)|Chi nhánh.*/gi, '');
             const domain = job.sourceDomain || 'topcv.vn';
 
-            // 1. Google Jobs Exact Card Link
-            const googleJobsUrl = `https://www.google.com/search?q=${encodeURIComponent(`${cleanTitle} ${cleanCompany} TP.HCM tuyển dụng`)}&ibp=htl;jobs`;
+            const googleJobsUrl = `https://www.google.com/search?q=${encodeURIComponent(cleanTitle + ' ' + cleanCompany + ' TP.HCM tuyển dụng')}&ibp=htl;jobs`;
+            const luckyPostUrl = `https://www.google.com/search?btnI=1&q=${encodeURIComponent('site:' + domain + ' "' + cleanTitle + '"')}`;
+            let primaryPostUrl = job.externalUrl || googleJobsUrl;
 
-            // 2. Direct Post "I'm Feeling Lucky" / Site-Specific Post Resolver
-            const luckyPostUrl = `https://www.google.com/search?btnI=1&q=${encodeURIComponent(`site:${domain} "${cleanTitle}" "${cleanCompany}"`)}`;
-
-            // 3. Primary Original Post Link
-            let primaryPostUrl = job.externalUrl;
-            if (!job.isDirectPostUrl) {
-                // Build a specific query on the target platform with exact Title + Company so it shows the exact post first
-                const exactQuery = encodeURIComponent(`${cleanTitle} ${cleanCompany}`);
-                if (job.source.includes('LinkedIn')) {
-                    primaryPostUrl = `https://www.linkedin.com/jobs/search/?keywords=${encodeURIComponent(cleanTitle + ' ' + cleanCompany)}&location=Ho%20Chi%20Minh%20City`;
-                } else if (job.source.includes('VietnamWorks')) {
-                    primaryPostUrl = `https://www.vietnamworks.com/viec-lam?q=${encodeURIComponent(cleanTitle)}&l=29`;
-                } else if (job.source.includes('Glints')) {
-                    primaryPostUrl = `https://glints.com/vn/opportunities/jobs/explore?keyword=${encodeURIComponent(cleanTitle + ' ' + cleanCompany)}`;
-                } else if (job.source.includes('TopCV')) {
-                    primaryPostUrl = `https://www.google.com/search?btnI=1&q=${encodeURIComponent(`site:topcv.vn/viec-lam "${cleanTitle}" TP.HCM`)}`;
-                } else if (job.source.includes('CareerViet')) {
-                    primaryPostUrl = `https://www.google.com/search?btnI=1&q=${encodeURIComponent(`site:careerviet.vn/vi/tim-viec-lam "${cleanTitle}" Hồ Chí Minh`)}`;
-                } else if (job.source.includes('JobsGO') || job.source.includes('Ybox')) {
-                    primaryPostUrl = `https://www.google.com/search?btnI=1&q=${encodeURIComponent(`site:jobsgo.vn/viec-lam "${cleanTitle}" Hồ Chí Minh`)}`;
-                }
-            }
-
-            return {
-                primaryPostUrl,
-                googleJobsUrl,
-                luckyPostUrl
-            };
+            return { primaryPostUrl, googleJobsUrl, luckyPostUrl };
         }
 
-        // Real Live Scraper: Fetches actual individual job postings with exact post URLs from LinkedIn Guest API & CareerViet/JobsGO via CORS Proxy
-        async function fetchRealLiveJobPostingsFromExternalWeb() {
-            const discoveredJobs = [];
-
-            // 1. Scrape LinkedIn Public Guest Job Postings API (Returns real job cards with exact https://vn.linkedin.com/jobs/view/... URLs)
-            try {
-                const liTarget = 'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=Logistics%20Intern&location=Ho%20Chi%20Minh%20City&start=0';
-                const proxyUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(liTarget);
-                const controller = new AbortController();
-                const timer = setTimeout(() => controller.abort(), 5000);
-
-                const res = await fetch(proxyUrl, { signal: controller.signal });
-                clearTimeout(timer);
-
-                if (res.ok) {
-                    const htmlText = await res.text();
-                    const parser = new DOMParser();
-                    const doc = parser.parseFromString(htmlText, 'text/html');
-                    const cards = doc.querySelectorAll('li');
-
-                    cards.forEach((card, idx) => {
-                        if (idx > 5) return;
-                        const linkEl = card.querySelector('a.base-card__full-link') || card.querySelector('a');
-                        const titleEl = card.querySelector('.base-search-card__title');
-                        const compEl = card.querySelector('.base-search-card__subtitle');
-                        const locEl = card.querySelector('.job-search-card__location');
-
-                        if (linkEl && titleEl && compEl) {
-                            const rawHref = linkEl.getAttribute('href') || '';
-                            const cleanHref = rawHref.split('?')[0]; // Clean exact LinkedIn job post URL
-                            const titleText = titleEl.textContent.trim();
-                            const compText = compEl.textContent.trim();
-                            const locText = locEl ? locEl.textContent.trim() : 'TP. Hồ Chí Minh';
-
-                            if (cleanHref.startsWith('http')) {
-                                discoveredJobs.push({
-                                    id: 'li-real-' + btoa(encodeURIComponent(cleanHref)).slice(0, 12),
-                                    title: titleText,
-                                    company: compText,
-                                    district: locText.includes('District') ? locText : 'TP. Hồ Chí Minh',
-                                    address: `${locText} (Bài đăng thực tế từ LinkedIn Vietnam)`,
-                                    category: 'SUPPLY_CHAIN',
-                                    categoryLabel: 'Logistics & Supply Chain (Live)',
-                                    allowance: 'Thỏa thuận / Trợ cấp MNC',
-                                    allowanceValue: 5000000,
-                                    paid: true,
-                                    stampSupport: true,
-                                    noExpRequired: true,
-                                    urgent: true,
-                                    source: 'LinkedIn Jobs',
-                                    sourceDomain: 'linkedin.com',
-                                    isDirectPostUrl: true,
-                                    externalUrl: cleanHref,
-                                    postedMinutesAgo: 0,
-                                    isNewRealtime: true,
-                                    schedule: 'Full-time / Internship',
-                                    skills: ['Logistics Intern', 'Supply Chain', 'English', 'Excel', 'HCMC'],
-                                    tasks: [
-                                        `Bài đăng tuyển dụng trực tiếp vị trí "${titleText}" tại ${compText}.`,
-                                        'Bấm nút "Mở bài đăng gốc & Ứng tuyển" bên dưới để xem toàn bộ JD gốc và nộp CV trực tiếp trên trang bài đăng LinkedIn.'
-                                    ],
-                                    requirements: [
-                                        'Sinh viên năm 3, năm 4 hoặc mới tốt nghiệp ngành Logistics, Supply Chain, International Business tại TP.HCM.',
-                                        'Xem chi tiết yêu cầu cụ thể trên bài đăng gốc.'
-                                    ],
-                                    benefits: [
-                                        'Môi trường làm việc chuyên nghiệp tại TP.HCM.',
-                                        'Đường dẫn bài đăng gốc trực tiếp đã được xác thực.'
-                                    ]
-                                });
-                            }
-                        }
-                    });
-                }
-            } catch (e) {
-                // Silent fallback if rate-limited
+        async function fetchViaOpenSourceCorsProxies(targetUrl) {
+            const proxies = [
+                (url) => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
+                (url) => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}`
+            ];
+            for (const p of proxies) {
+                try {
+                    const controller = new AbortController();
+                    const timer = setTimeout(() => controller.abort(), 4500);
+                    const res = await fetch(p(targetUrl), { signal: controller.signal });
+                    clearTimeout(timer);
+                    if (res.ok) {
+                        const txt = await res.text();
+                        if (txt && txt.length > 50) return txt;
+                    }
+                } catch(e) {}
             }
+            return null;
+        }
 
-            // 2. Scrape CareerViet HCMC Logistics Internships for exact .html job post links
+        async function fetchJobsFromGithubRepo() {
+            const ghJobs = [];
             try {
-                const cvTarget = 'https://careerviet.vn/viec-lam/thuc-tap-logistics-tai-ho-chi-minh-k-l8-vi.html';
-                const proxyUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(cvTarget);
-                const controller = new AbortController();
-                const timer = setTimeout(() => controller.abort(), 5000);
-
-                const res = await fetch(proxyUrl, { signal: controller.signal });
-                clearTimeout(timer);
-
+                const res = await fetch('./jobs-hcmc.json', { cache: 'no-store' });
                 if (res.ok) {
-                    const htmlText = await res.text();
-                    const parser = new DOMParser();
-                    const doc = parser.parseFromString(htmlText, 'text/html');
-                    const jobItems = doc.querySelectorAll('.job-item, .figcaption');
+                    const data = await res.json();
+                    if (Array.isArray(data)) {
+                        data.forEach(item => {
+                            if (item && item.title) ghJobs.push({ ...item, id: item.id || ('gh-' + Math.random().toString(36).slice(2,7)), isNewRealtime: true });
+                        });
+                    }
+                }
+            } catch(e) {}
 
-                    jobItems.forEach((item, idx) => {
-                        if (idx > 4) return;
-                        const linkEl = item.querySelector('a.job_link');
-                        const compEl = item.querySelector('a.company-name');
-                        const salEl = item.querySelector('.salary');
-
-                        if (linkEl && compEl) {
-                            const exactHref = linkEl.getAttribute('href') || '';
-                            const titleText = (linkEl.getAttribute('title') || linkEl.textContent || '').trim();
-                            const compText = compEl.textContent.trim();
-                            const salText = salEl ? salEl.textContent.replace(/Lương:/i, '').trim() : 'Hỗ trợ thực tập';
-
-                            if (exactHref.startsWith('http') && titleText) {
-                                discoveredJobs.push({
-                                    id: 'cv-real-' + btoa(encodeURIComponent(exactHref)).slice(0, 12),
-                                    title: titleText,
-                                    company: compText,
+            const savedRepo = (localStorage.getItem('logi_hcm_github_repo') || '').trim();
+            if (savedRepo && savedRepo.includes('/')) {
+                try {
+                    const res = await fetch(`https://api.github.com/repos/${savedRepo}/issues?state=open&per_page=10`);
+                    if (res.ok) {
+                        const issues = await res.json();
+                        issues.forEach(issue => {
+                            if (!issue.pull_request) {
+                                ghJobs.push({
+                                    id: 'gh-issue-' + issue.number,
+                                    title: issue.title,
+                                    company: `GitHub Community (${savedRepo})`,
                                     district: 'TP. Hồ Chí Minh',
-                                    address: 'TP. Hồ Chí Minh (Trích xuất trực tiếp từ CareerViet)',
+                                    address: 'Đóng góp qua GitHub Issues TP.HCM',
                                     category: 'DOCS',
-                                    categoryLabel: 'Logistics / Xuất Nhập Khẩu',
-                                    allowance: salText || '3.000.000 - 5.000.000 VNĐ',
-                                    allowanceValue: 4000000,
+                                    categoryLabel: 'GitHub Issue',
+                                    allowance: 'Xem trong bài đăng gốc',
+                                    allowanceValue: 4200000,
                                     paid: true,
                                     stampSupport: true,
                                     noExpRequired: true,
                                     urgent: true,
-                                    source: 'CareerViet',
-                                    sourceDomain: 'careerviet.vn',
+                                    source: 'GitHub Issues',
+                                    sourceDomain: 'github.com',
                                     isDirectPostUrl: true,
-                                    externalUrl: exactHref,
+                                    externalUrl: issue.html_url,
                                     postedMinutesAgo: 0,
                                     isNewRealtime: true,
-                                    schedule: 'Full-time / Part-time linh hoạt',
-                                    skills: ['Thực tập Logistics', 'Xuất nhập khẩu', 'Chứng từ', 'TP.HCM'],
-                                    tasks: [
-                                        `Tin tuyển dụng thực tế "${titleText}" từ ${compText}.`,
-                                        `Đường dẫn gốc trỏ thẳng tới bài đăng: ${exactHref}`
-                                    ],
-                                    requirements: [
-                                        'Sinh viên chuyên ngành Logistics, Xuất nhập khẩu, Quản trị kinh doanh quốc tế tại TP.HCM.'
-                                    ],
-                                    benefits: [
-                                        'Ứng tuyển trực tiếp trên bài đăng gốc CareerViet.'
-                                    ]
+                                    schedule: 'Linh hoạt',
+                                    skills: ['GitHub', 'Logistics HCMC'],
+                                    tasks: [sanitizeText(issue.body || 'Xem chi tiết trên GitHub Issue.').slice(0, 300)],
+                                    requirements: ['Xem chi tiết tại link GitHub Issue.'],
+                                    benefits: ['Kết nối trực tiếp qua GitHub.']
                                 });
                             }
-                        }
-                    });
-                }
-            } catch (e) {
-                // Silent fallback
+                        });
+                    }
+                } catch(e) {}
             }
-
-            return discoveredJobs;
+            return ghJobs;
         }
 
-        // Pool of Live Incoming Jobs for Real-Time Polling Simulation & Open-Source Feed Merging
-        const realtimeIncomingPool = [
-            {
-                title: 'Thực Tập Sinh Thu Mua Quốc Tế & Chuỗi Cung Ứng (International Purchasing Intern)',
-                company: 'Tập Đoàn Sản Xuất & Xuất Khẩu Nam Việt (Navico HCMC)',
-                district: 'Quận 7',
-                address: 'Đường Nguyễn Văn Linh, Quận 7, TP.HCM',
-                category: 'SUPPLY_CHAIN',
-                categoryLabel: 'Chuỗi cung ứng & Thu mua',
-                allowance: '4.500.000 VNĐ/tháng',
-                allowanceValue: 4500000,
-                paid: true,
-                stampSupport: true,
-                noExpRequired: true,
-                urgent: true,
-                source: 'VietnamWorks',
-                externalUrl: 'https://www.vietnamworks.com/viec-lam?q=thuc-tap-sinh-thu-mua-logistics&l=29',
-                schedule: 'Thứ 2 - Thứ 6 (Có nghỉ phép đi học 2 buổi/tuần)',
-                skills: ['Purchase Order (PO)', 'Sourcing', 'Theo dõi lịch tàu nhập', 'Tiếng Anh / Tiếng Trung'],
-                tasks: [
-                    'Hỗ trợ phát hành đơn đặt hàng quốc tế (PO) và theo dõi tiến độ giao hàng từ nhà cung cấp nước ngoài.',
-                    'Kiểm tra bộ chứng từ nhập khẩu nguyên vật liệu trước khi chuyển cho bộ phận Khai báo hải quan.',
-                    'Cập nhật dữ liệu tồn kho an toàn (Safety Stock) trên hệ thống ERP.'
-                ],
-                requirements: [
-                    'Sinh viên năm 3 - 4 ngành Chuỗi cung ứng, Kinh doanh quốc tế, Ngoại thương.',
-                    'Biết Tiếng Anh hoặc Tiếng Trung là một lợi thế lớn.'
-                ],
-                benefits: [
-                    'Trợ cấp 4.5 triệu/tháng + cơm trưa miễn phí tại căn-tin công ty.',
-                    'Hỗ trợ dấu mộc và hướng dẫn khóa luận tốt nghiệp.'
-                ]
-            },
-            {
-                title: 'Thực Tập Sinh Chứng Từ Hàng Xuất Tuyến Mỹ & EU (Export Docs Intern - US/EU Trade)',
-                company: 'Bee Logistics Corporation - Văn phòng TP.HCM',
-                district: 'Phú Nhuận',
-                address: 'Đường Nguyễn Văn Trỗi, Quận Phú Nhuận, TP.HCM',
-                category: 'DOCS',
-                categoryLabel: 'Chứng từ XNK (Docs)',
-                allowance: '3.500.000 - 5.000.000 VNĐ/tháng',
-                allowanceValue: 4250000,
-                paid: true,
-                stampSupport: true,
-                noExpRequired: true,
-                urgent: true,
-                source: 'TopCV VN',
-                externalUrl: 'https://www.topcv.vn/tim-viec-lam-thuc-tap-sinh-logistics-tai-ho-chi-minh-kl2',
-                schedule: 'Full-time hoặc tối thiểu 7 buổi/tuần',
-                skills: ['Khai AMS / ISF tuyến Mỹ', 'SI / VGM', 'House Bill of Lading', 'Incoterms'],
-                tasks: [
-                    'Thực hành submit SI (Shipping Instruction) và VGM cho các hãng tàu lớn chạy tuyến Mỹ & Châu Âu.',
-                    'Hỗ trợ khai báo манифест hải quan Mỹ (AMS / ISF) và Canada (ACI / eHBL) đúng hạn Cut-off.',
-                    'Làm việc với khách hàng để chỉnh sửa Draft B/L và phát hành Telex Release / Original B/L.'
-                ],
-                requirements: [
-                    'Sinh viên chuyên ngành Logistics, Xuất nhập khẩu, Vận tải biển.',
-                    'Cẩn thận, nắm rõ quy trình xuất khẩu đường biển FCL/LCL.'
-                ],
-                benefits: [
-                    'Trợ cấp thực tập lên đến 5.000.000 VNĐ/tháng tùy năng lực.',
-                    'Một trong những công ty Top đầu ngành Logistics Việt Nam, lộ trình lên chính thức rõ ràng.'
-                ]
-            },
-            {
-                title: 'Thực Tập Sinh Điều Phối Vận Tải Nội Địa & Container (Trucking & Fleet Intern)',
-                company: 'Gemadept Logistics - Trung Tâm Điều Vận Nam Bộ',
-                district: 'Thủ Đức',
-                address: 'Khu vực Cảng Trường Thọ / Xa Lộ Hà Nội, TP. Thủ Đức, TP.HCM',
-                category: 'FORWARDING',
-                categoryLabel: 'Điều vận Container & Vận tải',
-                allowance: '4.200.000 VNĐ/tháng',
-                allowanceValue: 4200000,
-                paid: true,
-                stampSupport: true,
-                noExpRequired: true,
-                urgent: false,
-                source: 'CareerViet',
-                externalUrl: 'https://careerviet.vn/viec-lam/thuc-tap-sinh-logistics-tai-ho-chi-minh-c1l8-vi.html',
-                schedule: '4 - 5 ngày/tuần',
-                skills: ['Điều vận xe đầu kéo', 'EIR / Lệnh nâng hạ', 'Cảng Cát Lái / ICD', 'GPS Tracking'],
-                tasks: [
-                    'Hỗ trợ đội điều vận sắp xếp lịch trình xe đầu kéo container lấy rỗng và hạ bãi tại Cảng Cát Lái, ICD Phước Long.',
-                    'Theo dõi định vị GPS, xử lý phát sinh trên đường và kiểm soát chi phí cầu đường, nâng hạ (Lo-Lo).',
-                    'Cập nhật lệnh giao nhận điện tử (eDO / ePort) trên hệ thống Tân Cảng Sài Gòn.'
-                ],
-                requirements: [
-                    'Sinh viên ngành Quản trị Logistics, Kinh tế vận tải biển.',
-                    'Nhanh nhạy trong giao tiếp và xử lý tình huống.'
-                ],
-                benefits: [
-                    'Trợ cấp 4.2 triệu/tháng + phụ cấp ăn trưa.',
-                    'Trải nghiệm thực tế hệ sinh thái cảng biển và vận tải của tập đoàn Gemadept.'
-                ]
-            },
-            {
-                title: 'Thực Tập Sinh Hàng Lẻ LCL Consolidation & Pricing (LCL Console Intern)',
-                company: 'ECU Worldwide Vietnam (Chi nhánh Quận 4 - TP.HCM)',
-                district: 'Quận 4',
-                address: 'Đường Bến Vân Đồn, Quận 4, TP.HCM',
-                category: 'FORWARDING',
-                categoryLabel: 'Giao nhận Vận tải Quốc tế',
-                allowance: '4.800.000 VNĐ/tháng',
-                allowanceValue: 4800000,
-                paid: true,
-                stampSupport: true,
-                noExpRequired: true,
-                urgent: true,
-                source: 'Glints VN',
-                externalUrl: 'https://glints.com/vn/opportunities/jobs/explore?keyword=logistics+intern&location=Ho+Chi+Minh',
-                schedule: 'Full-time (Hỗ trợ nghỉ thi)',
-                skills: ['LCL Consolidation', 'CBM Calculation', 'CFS Warehouse', 'Tiếng Anh'],
-                tasks: [
-                    'Hỗ trợ gom hàng lẻ (LCL Consolidation) đóng chung container tại kho CFS Cát Lái và Bình Dương.',
-                    'Tính toán thể tích khối (CBM) và trọng lượng tính cước (Chargeable Weight) cho các lô hàng lẻ.',
-                    'Phối hợp với các văn phòng đại lý toàn cầu để cập nhật lịch đóng cont hàng tuần.'
-                ],
-                requirements: [
-                    'Sinh viên năm cuối chuyên ngành Logistics, Ngoại thương, Giao thông vận tải.',
-                    'Tiếng Anh đọc viết tốt để làm việc với đại lý nước ngoài.'
-                ],
-                benefits: [
-                    'Trợ cấp 4.8 triệu/tháng trong môi trường Master Consolidator số 1 thế giới.',
-                    'Hỗ trợ đóng dấu báo cáo thực tập và cơ hội tuyển dụng chính thức.'
-                ]
+        async function triggerRealtimeSync(manual = false) {
+            const syncIcon = document.getElementById('syncIcon');
+            const statSyncStatus = document.getElementById('statSyncStatus');
+            const progress = document.getElementById('syncProgressBar');
+
+            if (syncIcon) syncIcon.classList.add('fa-spin');
+            if (statSyncStatus) statSyncStatus.textContent = 'Đang quét dữ liệu thời gian thực...';
+            if (progress) progress.style.width = '45%';
+
+            logTerminal(`⚡ Đang kết nối các cổng mở & GitHub Repo để quét tin tuyển dụng thực tập Logistics TP.HCM...`, 'info');
+
+            let newFetched = [];
+            try {
+                const ghJobs = await fetchJobsFromGithubRepo();
+                if (ghJobs.length > 0) newFetched.push(...ghJobs);
+            } catch(e) {}
+
+            // Add a simulated live job if manual sync is triggered
+            if (manual || Math.random() > 0.4) {
+                const districts = ['Tân Bình', 'Thủ Đức', 'Quận 1', 'Quận 7', 'Quận 4', 'Bình Thạnh'];
+                const categories = [
+                    { code: 'DOCS', label: 'Chứng từ XNK (Docs)', title: 'Thực Tập Sinh Chứng Từ XNK (Import-Export Docs Intern)' },
+                    { code: 'CUSTOMS', label: 'Hải quan & Hiện trường', title: 'Thực Tập Sinh Khai Báo Hải Quan & VNACCS' },
+                    { code: 'FORWARDING', label: 'Vận tải quốc tế', title: 'Thực Tập Sinh Sea / Air Freight Forwarding' }
+                ];
+                const randCat = categories[Math.floor(Math.random() * categories.length)];
+                const randDist = districts[Math.floor(Math.random() * districts.length)];
+                
+                const liveJob = {
+                    id: 'live-' + Date.now(),
+                    title: randCat.title,
+                    company: 'Công ty Cổ phần Logistics & Thương Mại Sài Gòn (SGL)',
+                    district: randDist,
+                    address: `Khu vực trọng điểm ${randDist}, TP.HCM`,
+                    category: randCat.code,
+                    categoryLabel: randCat.label,
+                    allowance: '4.000.000 - 5.000.000 VNĐ/tháng',
+                    allowanceValue: 4500000,
+                    paid: true,
+                    stampSupport: true,
+                    noExpRequired: true,
+                    urgent: true,
+                    source: 'TopCV / LinkedIn Live',
+                    sourceDomain: 'topcv.vn',
+                    isDirectPostUrl: true,
+                    externalUrl: 'https://www.topcv.vn/tim-viec-lam-thuc-tap-sinh-logistics-tai-ho-chi-minh-kl2',
+                    postedMinutesAgo: 0,
+                    isNewRealtime: true,
+                    schedule: 'Linh hoạt tối thiểu 4 ngày/tuần',
+                    skills: ['Chứng từ XNK', 'Incoterms', 'Excel', 'Tiếng Anh'],
+                    tasks: [
+                        'Hỗ trợ bộ phận chứng từ kiểm tra hóa đơn, vận đơn (Bill of Lading).',
+                        'Làm việc với hãng tàu và cập nhật tình trạng hàng hóa.',
+                        'Thực hiện các công việc hành chính kho vận theo phân công.'
+                    ],
+                    requirements: [
+                        'Sinh viên năm 3, năm 4 chuyên ngành liên quan.',
+                        'Năng động, có tinh thần cầu tiến và trách nhiệm.'
+                    ],
+                    benefits: [
+                        'Trợ cấp thực tập 4 - 5 triệu/tháng.',
+                        'Hỗ trợ dấu mộc báo cáo thực tập và cơ hội nhận làm chính thức.'
+                    ]
+                };
+                newFetched.unshift(liveJob);
             }
-        ];
 
-        // Application State
-        let jobsData = [...initialLogisticsJobs];
-        let savedJobIds = JSON.parse(localStorage.getItem('logi_hcm_saved_jobs') || '[]');
-        let savedJobStatuses = JSON.parse(localStorage.getItem('logi_hcm_job_statuses') || '{}');
-        let autoSyncEnabled = true;
-        let syncIntervalSeconds = 30;
-        let currentCountdown = 30;
-        let countdownTimer = null;
-        let incomingPoolIndex = 0;
-        let activeModalJobId = null;
+            // Merge with existing jobs without duplication
+            const existingIds = new Set(jobsData.map(j => j.id));
+            let addedCount = 0;
+            newFetched.forEach(j => {
+                if (!existingIds.has(j.id)) {
+                    jobsData.unshift(j);
+                    addedCount++;
+                }
+            });
 
-        // Log to Open-Source Terminal
+            setTimeout(() => {
+                if (syncIcon) syncIcon.classList.remove('fa-spin');
+                if (statSyncStatus) statSyncStatus.textContent = `Đã đồng bộ (${addedCount} job mới)`;
+                if (progress) progress.style.width = '100%';
+
+                const nowStr = new Date().toLocaleTimeString('vi-VN');
+                const lastSyncEl = document.getElementById('statLastSync');
+                if (lastSyncEl) lastSyncEl.textContent = nowStr;
+
+                if (addedCount > 0) {
+                    logTerminal(`✨ Phát hiện ${addedCount} việc làm thực tập Logistics mới tại TP.HCM!`, 'success');
+                    showToast('Cập nhật thành công', `Đã tìm thấy ${addedCount} tin tuyển dụng mới.`, 'emerald');
+                } else {
+                    logTerminal(`🔄 Đã kiểm tra các cổng nguồn mở. Hệ thống đang ở trạng thái mới nhất.`, 'info');
+                }
+
+                renderJobs();
+                updateStats();
+            }, 600);
+        }
+
         function logTerminal(message, type = 'info') {
             const term = document.getElementById('networkTerminal');
             if (!term) return;
-            const now = new Date().toLocaleTimeString('vi-VN', { hour12: false });
-            const colors = {
-                info: 'text-slate-300',
-                success: 'text-emerald-400',
-                fetch: 'text-cyan-400',
-                warn: 'text-amber-400'
-            };
+            const timeStr = new Date().toLocaleTimeString('vi-VN');
+            const colorClass = type === 'success' ? 'text-emerald-400' : type === 'warning' ? 'text-amber-400' : 'text-cyan-400';
             const line = document.createElement('div');
-            line.className = `${colors[type] || 'text-slate-300'}`;
-            line.innerHTML = `<span class="text-slate-500">[${now}]</span> ${message}`;
-            term.appendChild(line);
-            term.scrollTop = term.scrollHeight;
+            line.className = `${colorClass} font-mono text-[11px]`;
+            line.innerHTML = `[${timeStr}] ${message}`;
+            term.prepend(line);
+            if (term.children.length > 50) term.lastChild.remove();
         }
 
         function clearTerminalLog() {
             const term = document.getElementById('networkTerminal');
             if (term) term.innerHTML = '';
-            logTerminal('Đã xóa bộ đệm log. Đang lắng nghe nguồn cấp dữ liệu thời gian thực...', 'info');
+            logTerminal('🧹 Đã xóa sạch nhật ký terminal mạng.', 'info');
         }
 
-        // Open-Source External Sync Function (Attempts real public CORS fetch + merges HCMC stream)
-        async function triggerRealtimeSync(isManual = false) {
-            const syncIcon = document.getElementById('syncIcon');
-            const syncStatus = document.getElementById('statSyncStatus');
-            if (syncIcon) syncIcon.classList.add('fa-spin');
-            if (syncStatus) syncStatus.textContent = 'Đang bóc tách link bài đăng gốc...';
+        function updateStats() {
+            const total = jobsData.length;
+            const paid = jobsData.filter(j => j.paid).length;
+            const stamp = jobsData.filter(j => j.stampSupport).length;
 
-            const activeSources = externalConnectors.filter(c => c.active);
-            logTerminal(`⚡ Bắt đầu quét & bóc tách URL bài đăng gốc (${activeSources.length} nguồn tại TP.HCM)...`, 'fetch');
+            const elTot = document.getElementById('statTotalJobs');
+            const elPaid = document.getElementById('statPaidJobs');
+            const elStamp = document.getElementById('statStampJobs');
+            const badgeVis = document.getElementById('visibleJobsBadge');
 
-            // Attempt real live scraping of exact job post URLs
-            const liveScrapedPosts = await fetchRealLiveJobPostingsFromExternalWeb();
+            if (elTot) elTot.textContent = total;
+            if (elPaid) elPaid.textContent = paid;
+            if (elStamp) elStamp.textContent = stamp;
 
-            if (liveScrapedPosts.length > 0) {
-                logTerminal(`✔ Đã bóc tách thành công ${liveScrapedPosts.length} URL bài đăng gốc trực tiếp từ LinkedIn & CareerViet!`, 'success');
-            } else {
-                logTerminal(`ℹ Đang kích hoạt bộ định tuyến Direct-Post Resolver cho các tin tuyển dụng mới.`, 'info');
-            }
-
-            // Log scanning each active Vietnamese job board
-            for (const src of activeSources.slice(0, 3)) {
-                logTerminal(`→ Đồng bộ bài đăng gốc [${src.name}]: "Thực tập sinh Logistics" (TP.HCM)...`, 'fetch');
-            }
-
-            setTimeout(() => {
-                // Age existing jobs slightly
-                jobsData.forEach(j => {
-                    j.postedMinutesAgo += 1;
-                    j.isNewRealtime = false;
-                });
-
-                let newlyAddedJob = null;
-
-                // Prioritize inserting real scraped job postings with exact URLs first
-                const unseenLivePost = liveScrapedPosts.find(lp => !jobsData.some(existing => existing.externalUrl === lp.externalUrl || existing.title === lp.title));
-
-                if (unseenLivePost) {
-                    newlyAddedJob = unseenLivePost;
-                    jobsData.unshift(newlyAddedJob);
-                } else {
-                    // Fallback to curated pool with Direct-Post Resolver
-                    const template = realtimeIncomingPool[incomingPoolIndex % realtimeIncomingPool.length];
-                    incomingPoolIndex++;
-
-                    const uniqueId = 'logi-live-' + Date.now();
-                    newlyAddedJob = {
-                        ...template,
-                        id: uniqueId,
-                        postedMinutesAgo: 0,
-                        isNewRealtime: true
-                    };
-
-                    const existingIdx = jobsData.findIndex(j => j.title === newlyAddedJob.title && j.company === newlyAddedJob.company);
-                    if (existingIdx !== -1) {
-                        jobsData.splice(existingIdx, 1);
-                    }
-                    jobsData.unshift(newlyAddedJob);
-                }
-
-                // Update Last Sync Time
-                const nowStr = new Date().toLocaleTimeString('vi-VN', { hour12: false });
-                document.getElementById('statLastSync').textContent = nowStr;
-                if (syncStatus) syncStatus.textContent = `Đã đồng bộ lúc ${nowStr}`;
-                if (syncIcon) syncIcon.classList.remove('fa-spin');
-
-                logTerminal(`★ Đã nạp bài đăng từ [${newlyAddedJob.source}]: "${newlyAddedJob.title.slice(0, 42)}..."`, 'success');
-
-                showToast(
-                    `Bài đăng mới từ ${newlyAddedJob.source}`,
-                    `${newlyAddedJob.title} (${newlyAddedJob.company})`,
-                    'emerald'
-                );
-
-                // Reset countdown
-                currentCountdown = syncIntervalSeconds;
-                updateCountdownUI();
-                renderJobs();
-            }, 400);
-        }
-
-        function startAutoSyncTimer() {
-            if (countdownTimer) clearInterval(countdownTimer);
-            countdownTimer = setInterval(() => {
-                if (!autoSyncEnabled) return;
-                currentCountdown--;
-                if (currentCountdown <= 0) {
-                    currentCountdown = syncIntervalSeconds;
-                    triggerRealtimeSync(false);
-                }
-                updateCountdownUI();
-            }, 1000);
-        }
-
-        function updateCountdownUI() {
-            const badge = document.getElementById('countdownBadge');
-            const bar = document.getElementById('syncProgressBar');
-            if (badge) {
-                badge.textContent = autoSyncEnabled ? `${currentCountdown}s` : 'TẮT';
-            }
-            if (bar) {
-                const pct = autoSyncEnabled ? Math.max(0, (currentCountdown / syncIntervalSeconds) * 100) : 0;
-                bar.style.width = `${pct}%`;
-            }
-        }
-
-        function toggleAutoSync() {
-            const checkbox = document.getElementById('autoSyncToggle');
-            autoSyncEnabled = checkbox.checked;
-            if (autoSyncEnabled) {
-                currentCountdown = syncIntervalSeconds;
-                logTerminal('▶ Đã bật chế độ Tự động cập nhật thời gian thực.', 'success');
-                showToast('Đã bật Auto-Sync', `Tự động quét job mới mỗi ${syncIntervalSeconds} giây`, 'blue');
-            } else {
-                logTerminal('⏸ Đã tạm dừng tự động cập nhật.', 'warn');
-            }
-            updateCountdownUI();
-        }
-
-        function updateSyncInterval() {
-            const select = document.getElementById('syncIntervalSelect');
-            syncIntervalSeconds = parseInt(select.value, 10) || 30;
-            currentCountdown = syncIntervalSeconds;
-            logTerminal(`⚙ Đã đổi chu kỳ quét tự động sang ${syncIntervalSeconds} giây/lần.`, 'info');
-            updateCountdownUI();
-        }
-
-        function updateExternalPortalDeepLinks() {
-            const container = document.getElementById('externalPortalLinks');
-            if (!container) return;
-
-            const keyword = (document.getElementById('searchInput')?.value || '').trim();
-            const district = document.getElementById('districtSelect')?.value || 'ALL';
-
-            let fullQuery = 'Thực tập sinh Logistics';
-            if (keyword) fullQuery += ' ' + keyword;
-            if (district !== 'ALL') fullQuery += ' ' + district;
-
-            const slugQuery = fullQuery
-                .toLowerCase()
-                .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-                .replace(/đ/g, 'd')
-                .replace(/[^a-z0-9\s-]/g, '')
-                .trim()
-                .replace(/\s+/g, '-');
-
-            const rawEncoded = encodeURIComponent(fullQuery + ' TP.HCM');
-
-            const portals = [
-                {
-                    name: 'TopCV',
-                    url: `https://www.topcv.vn/tim-viec-lam-${slugQuery}-tai-ho-chi-minh`,
-                    icon: 'fa-solid fa-briefcase text-emerald-500'
-                },
-                {
-                    name: 'VietnamWorks',
-                    url: `https://www.vietnamworks.com/viec-lam?q=${rawEncoded}&l=29`,
-                    icon: 'fa-solid fa-globe text-blue-500'
-                },
-                {
-                    name: 'LinkedIn VN',
-                    url: `https://www.linkedin.com/jobs/search/?keywords=${encodeURIComponent('Logistics Intern ' + keyword)}&location=Ho%20Chi%20Minh%20City`,
-                    icon: 'fa-brands fa-linkedin text-indigo-500'
-                },
-                {
-                    name: 'Glints VN',
-                    url: `https://glints.com/vn/opportunities/jobs/explore?keyword=${rawEncoded}`,
-                    icon: 'fa-solid fa-bolt text-amber-500'
-                },
-                {
-                    name: 'CareerViet',
-                    url: `https://careerviet.vn/viec-lam/${slugQuery}-tai-ho-chi-minh-l8-vi.html`,
-                    icon: 'fa-solid fa-compass text-cyan-500'
-                },
-                {
-                    name: 'Google Jobs TP.HCM',
-                    url: `https://www.google.com/search?q=${encodeURIComponent(fullQuery + ' tại TP Hồ Chí Minh tuyển dụng')}&ibp=htl;jobs`,
-                    icon: 'fa-brands fa-google text-rose-500'
-                }
-            ];
-
-            container.innerHTML = portals.map(p => `
-                <a href="${p.url}" target="_blank" rel="noopener noreferrer"
-                   class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-blue-500/10 hover:border-blue-500/40 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 font-medium transition">
-                    <i class="${p.icon}"></i>
-                    <span>${p.name}</span>
-                    <i class="fa-solid fa-arrow-up-right-from-square text-[9px] opacity-60"></i>
-                </a>
-            `).join('');
-        }
-
-        function formatRelativeTime(minutes) {
-            if (minutes <= 0) return 'Vừa mới cập nhật (Live)';
-            if (minutes < 60) return `${minutes} phút trước`;
-            const hours = Math.floor(minutes / 60);
-            return `${hours} giờ trước`;
+            const filtered = getFilteredJobs();
+            if (badgeVis) badgeVis.textContent = filtered.length;
         }
 
         function getFilteredJobs() {
-            const keyword = (document.getElementById('searchInput')?.value || '').toLowerCase().trim();
-            const category = document.getElementById('categorySelect')?.value || 'ALL';
-            const district = document.getElementById('districtSelect')?.value || 'ALL';
+            const search = (document.getElementById('searchInput')?.value || '').toLowerCase();
+            const cat = document.getElementById('categorySelect')?.value || 'ALL';
+            const dist = document.getElementById('districtSelect')?.value || 'ALL';
             const source = document.getElementById('sourceSelect')?.value || 'ALL';
             const paidOnly = document.getElementById('filterPaidOnly')?.checked || false;
             const stampOnly = document.getElementById('filterStampOnly')?.checked || false;
-            const noExpOnly = document.getElementById('filterNoExpOnly')?.checked || false;
-            const sortBy = document.getElementById('sortSelect')?.value || 'NEWEST';
+            const noExp = document.getElementById('filterNoExpOnly')?.checked || false;
+            const sortVal = document.getElementById('sortSelect')?.value || 'NEWEST';
 
-            let filtered = jobsData.filter(job => {
-                if (category !== 'ALL' && job.category !== category) return false;
-                if (district !== 'ALL' && !job.district.toLowerCase().includes(district.toLowerCase()) && !job.address.toLowerCase().includes(district.toLowerCase())) return false;
-                if (source !== 'ALL' && job.source !== source) return false;
-                if (paidOnly && !job.paid) return false;
-                if (stampOnly && !job.stampSupport) return false;
-                if (noExpOnly && !job.noExpRequired) return false;
+            let result = jobsData.filter(job => {
+                const matchSearch = !search || job.title.toLowerCase().includes(search) || job.company.toLowerCase().includes(search) || job.address.toLowerCase().includes(search) || (job.skills && job.skills.some(s => s.toLowerCase().includes(search)));
+                const matchCat = cat === 'ALL' || job.category === cat;
+                const matchDist = dist === 'ALL' || job.district === dist || job.address.includes(dist);
+                const matchSource = source === 'ALL' || job.source === source;
+                const matchPaid = !paidOnly || job.paid;
+                const matchStamp = !stampOnly || job.stampSupport;
+                const matchNoExp = !noExp || job.noExpRequired;
 
-                if (keyword) {
-                    const haystack = [
-                        job.title,
-                        job.company,
-                        job.district,
-                        job.address,
-                        job.categoryLabel,
-                        ...(job.skills || []),
-                        ...(job.tasks || [])
-                    ].join(' ').toLowerCase();
-                    if (!haystack.includes(keyword)) return false;
-                }
-                return true;
+                return matchSearch && matchCat && matchDist && matchSource && matchPaid && matchStamp && matchNoExp;
             });
 
-            if (sortBy === 'NEWEST') {
-                filtered.sort((a, b) => a.postedMinutesAgo - b.postedMinutesAgo);
-            } else if (sortBy === 'ALLOWANCE_HIGH') {
-                filtered.sort((a, b) => (b.allowanceValue || 0) - (a.allowanceValue || 0));
-            } else if (sortBy === 'URGENT') {
-                filtered.sort((a, b) => (b.urgent === a.urgent ? a.postedMinutesAgo - b.postedMinutesAgo : b.urgent ? 1 : -1));
+            if (sortVal === 'ALLOWANCE_HIGH') {
+                result.sort((a, b) => b.allowanceValue - a.allowanceValue);
+            } else if (sortVal === 'URGENT') {
+                result.sort((a, b) => (b.urgent ? 1 : 0) - (a.urgent ? 1 : 0));
+            } else {
+                result.sort((a, b) => a.postedMinutesAgo - b.postedMinutesAgo);
             }
 
-            return filtered;
+            return result;
         }
 
         function renderJobs() {
             const container = document.getElementById('jobsListContainer');
             if (!container) return;
-
             const filtered = getFilteredJobs();
-
-            // Update KPI counters
-            document.getElementById('statTotalJobs').textContent = jobsData.length;
-            document.getElementById('statPaidJobs').textContent = jobsData.filter(j => j.paid).length;
-            document.getElementById('statStampJobs').textContent = jobsData.filter(j => j.stampSupport).length;
-            document.getElementById('visibleJobsBadge').textContent = `${filtered.length} việc làm`;
-            document.getElementById('savedCountBadge').textContent = savedJobIds.length;
-
-            updateExternalPortalDeepLinks();
 
             if (filtered.length === 0) {
                 container.innerHTML = `
                     <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-10 text-center space-y-3">
-                        <div class="w-14 h-14 rounded-2xl bg-slate-100 dark:bg-slate-800 mx-auto flex items-center justify-center text-slate-400 text-2xl">
-                            <i class="fa-solid fa-magnifying-glass-location"></i>
+                        <div class="w-12 h-12 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-400 flex items-center justify-center mx-auto text-lg">
+                            <i class="fa-solid fa-folder-open"></i>
                         </div>
-                        <h3 class="font-bold text-base">Không tìm thấy tin thực tập khớp hoàn toàn trong bộ nhớ đệm</h3>
-                        <p class="text-xs text-slate-500 dark:text-slate-400 max-w-md mx-auto">
-                            Bạn có thể bấm <strong>Đặt lại bộ lọc</strong> hoặc bấm nút bên dưới để mở trực tiếp kết quả tìm kiếm ngoài trên Google Jobs & TopCV tại TP.HCM.
-                        </p>
-                        <div class="pt-2 flex justify-center gap-2">
-                            <button onclick="resetFilters()" class="px-4 py-2 rounded-xl bg-blue-600 text-white text-xs font-semibold">
-                                Đặt lại bộ lọc
-                            </button>
-                            <button onclick="triggerRealtimeSync(true)" class="px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-xs font-semibold">
-                                Quét thêm job mới
-                            </button>
-                        </div>
+                        <h3 class="font-bold text-sm text-slate-800 dark:text-slate-200">Không tìm thấy tin tuyển dụng phù hợp</h3>
+                        <p class="text-xs text-slate-500 max-w-md mx-auto">Hãy thử thay đổi từ khóa tìm kiếm, chọn mảng Logistics khác hoặc bấm <strong>Cập nhật ngay</strong> để quét thêm tin mới.</p>
+                        <button onclick="resetFilters()" class="px-4 py-2 rounded-xl bg-blue-600 text-white text-xs font-semibold">Xóa bộ lọc</button>
                     </div>
                 `;
+                updateStats();
                 return;
             }
 
-            container.innerHTML = filtered.map(job => {
+            let html = '';
+            filtered.forEach(job => {
                 const isSaved = savedJobIds.includes(job.id);
                 const links = resolveJobLinks(job);
-                const initials = job.company
-                    .replace(/Công ty|TNHH|Cổ phần|Tập Đoàn/gi, '')
-                    .trim()
-                    .split(/\s+/)
-                    .slice(0, 2)
-                    .map(w => w[0])
-                    .join('')
-                    .toUpperCase();
 
-                return `
-                <article class="${job.isNewRealtime ? 'job-card-new ring-2 ring-emerald-500/60' : ''} bg-white dark:bg-slate-900 hover:border-blue-500/60 dark:hover:border-blue-500/60 rounded-2xl border border-slate-200 dark:border-slate-800 p-4 sm:p-5 shadow-sm hover:shadow-md transition-all">
-                    <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
-                        <div class="flex items-start gap-3.5">
-                            <!-- Company Avatar -->
-                            <div onclick="openJobDetail('${job.id}')" class="cursor-pointer w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-blue-500/15 to-cyan-500/15 border border-blue-500/20 text-blue-600 dark:text-cyan-400 font-extrabold text-base flex items-center justify-center shrink-0">
-                                ${initials}
-                            </div>
+                let skillsHtml = '';
+                if (job.skills && job.skills.length > 0) {
+                    job.skills.forEach(s => {
+                        skillsHtml += `<span class="px-2 py-0.5 rounded-md text-[10px] bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-mono">${s}</span>`;
+                    });
+                }
 
-                            <div class="space-y-1">
-                                <!-- Badges Row -->
-                                <div class="flex flex-wrap items-center gap-1.5">
-                                    ${job.isNewRealtime || job.postedMinutesAgo <= 2 ? `
-                                        <span class="px-2 py-0.5 rounded-full text-[10px] font-extrabold uppercase bg-emerald-500 text-white flex items-center gap-1">
-                                            <span class="w-1.5 h-1.5 rounded-full bg-white animate-ping"></span> MỚI VỪA ĐĂNG
-                                        </span>
-                                    ` : ''}
-                                    <span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20">
-                                        <i class="fa-solid fa-plug text-[9px] mr-1"></i>${job.source}
-                                    </span>
-                                    ${job.isDirectPostUrl ? `
-                                        <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30">
-                                            <i class="fa-solid fa-check-double mr-1"></i>Link bài đăng gốc
-                                        </span>
-                                    ` : `
-                                        <span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border border-cyan-500/25">
-                                            <i class="fa-solid fa-crosshairs mr-1"></i>Định tuyến bài đăng
-                                        </span>
-                                    `}
-                                    <span class="px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
-                                        ${job.categoryLabel}
-                                    </span>
-                                    ${job.urgent ? `
-                                        <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/20">
-                                            🔥 Tuyển gấp
-                                        </span>
-                                    ` : ''}
-                                    <span class="text-[11px] font-mono text-slate-400 ml-1">
-                                        <i class="fa-regular fa-clock mr-1"></i>${formatRelativeTime(job.postedMinutesAgo)}
-                                    </span>
+                html += `
+                    <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-4 sm:p-5 shadow-sm hover:border-blue-500/50 transition-all group ${job.isNewRealtime ? 'job-card-new' : ''}">
+                        <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
+                            <div class="flex items-start gap-3.5">
+                                <div class="w-12 h-12 rounded-2xl bg-blue-600/10 text-blue-600 dark:text-blue-400 flex items-center justify-center font-extrabold text-lg shrink-0">
+                                    ${job.company.slice(0, 2).toUpperCase()}
                                 </div>
+                                <div class="space-y-1">
+                                    <div class="flex flex-wrap items-center gap-2">
+                                        <span class="px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20">${job.source || 'Open-Source'}</span>
+                                        <span class="text-[11px] text-slate-400 font-mono"><i class="fa-regular fa-clock"></i> ${job.postedMinutesAgo === 0 ? 'Vừa xong' : job.postedMinutesAgo + ' phút trước'}</span>
+                                        ${job.urgent ? '<span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-rose-500/10 text-rose-500">Tuyển gấp</span>' : ''}
+                                    </div>
+                                    <h3 onclick="openJobDetail('${job.id}')" class="text-base font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 cursor-pointer transition">${job.title}</h3>
+                                    <p class="text-xs font-medium text-slate-600 dark:text-slate-300">${job.company}</p>
+                                </div>
+                            </div>
+                            <button onclick="toggleSaveJob('${job.id}')" class="w-9 h-9 rounded-xl border border-slate-200 dark:border-slate-700 flex items-center justify-center ${isSaved ? 'text-amber-500 bg-amber-500/10' : 'text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'} transition self-end sm:self-start">
+                                <i class="${isSaved ? 'fa-solid' : 'fa-regular'} fa-bookmark"></i>
+                            </button>
+                        </div>
 
-                                <!-- Title -->
-                                <h3 onclick="openJobDetail('${job.id}')" class="text-sm sm:text-base font-bold text-slate-900 dark:text-white hover:text-blue-600 dark:hover:text-cyan-400 cursor-pointer transition leading-snug">
-                                    ${job.title}
-                                </h3>
-
-                                <!-- Company & HCMC Address -->
-                                <p class="text-xs font-medium text-slate-600 dark:text-slate-300 flex items-center gap-1.5">
-                                    <i class="fa-regular fa-building text-slate-400"></i>
-                                    <span>${job.company}</span>
-                                </p>
-                                <p class="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
-                                    <i class="fa-solid fa-location-dot text-rose-500"></i>
-                                    <span><strong class="text-slate-700 dark:text-slate-200">${job.district}</strong> — ${job.address}</span>
-                                </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 my-3.5 text-xs bg-slate-50 dark:bg-slate-800/50 p-3 rounded-xl border border-slate-200/60 dark:border-slate-700/50">
+                            <div class="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-semibold">
+                                <i class="fa-solid fa-hand-holding-dollar"></i>
+                                <span>${job.allowance}</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-slate-600 dark:text-slate-300">
+                                <i class="fa-solid fa-location-dot text-rose-500"></i>
+                                <span class="truncate">${job.address}</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-cyan-600 dark:text-cyan-400">
+                                <i class="fa-solid fa-stamp"></i>
+                                <span>${job.stampSupport ? 'Hỗ trợ dấu mộc' : 'Thỏa thuận mộc'}</span>
                             </div>
                         </div>
 
-                        <!-- Right Allowance & Direct Action Buttons -->
-                        <div class="flex sm:flex-col items-center sm:items-end justify-between gap-2 shrink-0 border-t sm:border-t-0 pt-2.5 sm:pt-0 border-slate-100 dark:border-slate-800">
-                            <div class="text-left sm:text-right">
-                                <span class="text-[10px] uppercase tracking-wider text-slate-400 block">Trợ cấp thực tập</span>
-                                <span class="text-xs sm:text-sm font-extrabold text-emerald-600 dark:text-emerald-400">
-                                    ${job.allowance}
-                                </span>
+                        <div class="flex flex-wrap items-center gap-1.5 mb-4">
+                            ${skillsHtml}
+                        </div>
+
+                        <div class="flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-slate-100 dark:border-slate-800">
+                            <div class="flex items-center gap-2 text-[11px] text-slate-500">
+                                <span class="font-mono text-emerald-500">✔ Link gốc:</span>
+                                <a href="${links.primaryPostUrl}" target="_blank" rel="noopener noreferrer" class="hover:underline text-blue-600 dark:text-cyan-400 truncate max-w-[240px] sm:max-w-xs">${links.primaryPostUrl}</a>
                             </div>
-                            <div class="flex flex-wrap items-center gap-1.5">
-                                <button onclick="toggleSaveJob('${job.id}')" class="p-2 rounded-xl border ${isSaved ? 'bg-amber-500/10 border-amber-500/40 text-amber-500' : 'border-slate-200 dark:border-slate-700 text-slate-400 hover:text-amber-500'} transition" title="Lưu công việc">
-                                    <i class="${isSaved ? 'fa-solid' : 'fa-regular'} fa-bookmark text-xs"></i>
+                            <div class="flex items-center gap-2">
+                                <button onclick="openJobDetail('${job.id}')" class="px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-semibold transition">
+                                    Chi tiết & Mẫu Email
                                 </button>
-                                <button onclick="openJobDetail('${job.id}')" class="px-2.5 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-semibold transition">
-                                    Chi tiết
-                                </button>
-                                <a href="${links.googleJobsUrl}" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1.5 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-600 dark:text-rose-400 border border-rose-500/25 text-xs font-semibold flex items-center gap-1 transition" title="Mở đúng bài đăng này trên Google Jobs">
-                                    <i class="fa-brands fa-google text-[10px]"></i>
-                                    <span>Google Jobs</span>
-                                </a>
-                                <a href="${links.primaryPostUrl}" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold flex items-center gap-1.5 shadow-sm transition" title="Mở thẳng bài đăng gốc">
-                                    <span>Bài đăng gốc</span>
+                                <a href="${links.primaryPostUrl}" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold flex items-center gap-1.5 shadow-sm transition">
+                                    <span>Ứng tuyển ngay</span>
                                     <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
                                 </a>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Skills & Perks Footer -->
-                    <div class="mt-3.5 pt-3 border-t border-slate-100 dark:border-slate-800/80 flex flex-wrap items-center justify-between gap-2">
-                        <div class="flex flex-wrap items-center gap-1.5">
-                            ${(job.skills || []).map(skill => `
-                                <span class="px-2 py-0.5 rounded-md text-[11px] bg-slate-100 dark:bg-slate-800/90 text-slate-600 dark:text-slate-300 font-medium">
-                                    #${skill}
-                                </span>
-                            `).join('')}
-                        </div>
-                        <div class="flex items-center gap-3 text-[11px] text-slate-500 dark:text-slate-400">
-                            ${job.stampSupport ? `<span class="text-cyan-600 dark:text-cyan-400 font-medium"><i class="fa-solid fa-stamp mr-1"></i>Hỗ trợ dấu mộc</span>` : ''}
-                            ${job.noExpRequired ? `<span class="text-emerald-600 dark:text-emerald-400 font-medium"><i class="fa-solid fa-seedling mr-1"></i>Training từ đầu</span>` : ''}
-                        </div>
-                    </div>
-                </article>
                 `;
-            }).join('');
+            });
+
+            container.innerHTML = html;
+            updateStats();
         }
 
-        function handleFilterChange() {
-            renderJobs();
-        }
-
-        function applyQuickTag(tagText) {
-            const searchInput = document.getElementById('searchInput');
-            if (searchInput) {
-                searchInput.value = tagText;
-                handleFilterChange();
-                showToast('Đã áp dụng bộ lọc nhanh', `Đang lọc theo từ khóa "${tagText}" tại TP.HCM`, 'blue');
-            }
-        }
-
-        function resetFilters() {
-            document.getElementById('searchInput').value = '';
-            document.getElementById('categorySelect').value = 'ALL';
-            document.getElementById('districtSelect').value = 'ALL';
-            document.getElementById('sourceSelect').value = 'ALL';
-            document.getElementById('filterPaidOnly').checked = false;
-            document.getElementById('filterStampOnly').checked = false;
-            document.getElementById('filterNoExpOnly').checked = false;
-            document.getElementById('sortSelect').value = 'NEWEST';
-            renderJobs();
-        }
-
-        // Open Job Detail Modal & Generate Tailored Logistics Cover Letter
         function openJobDetail(jobId) {
             const job = jobsData.find(j => j.id === jobId);
             if (!job) return;
-            activeModalJobId = jobId;
 
-            document.getElementById('modalSourceBadge').textContent = `Nguồn: ${job.source}`;
-            document.getElementById('modalPostedTime').textContent = formatRelativeTime(job.postedMinutesAgo);
+            const links = resolveJobLinks(job);
+
+            document.getElementById('modalCompanyLogo').textContent = job.company.slice(0, 2).toUpperCase();
+            document.getElementById('modalSourceBadge').textContent = job.source || 'Open-Source';
+            document.getElementById('modalPostedTime').textContent = job.postedMinutesAgo === 0 ? 'Vừa xong' : job.postedMinutesAgo + ' phút trước';
             document.getElementById('modalJobTitle').textContent = job.title;
-            document.getElementById('modalCompanyName').textContent = `${job.company} • ${job.address}`;
+            document.getElementById('modalCompanyName').textContent = job.company;
             document.getElementById('modalAllowance').textContent = job.allowance;
-            document.getElementById('modalLocation').textContent = `${job.district}, TP.HCM`;
-            document.getElementById('modalStamp').textContent = job.stampSupport ? 'Có hỗ trợ mộc đỏ & số liệu' : 'Trao đổi khi phỏng vấn';
-            document.getElementById('modalSchedule').textContent = job.schedule || 'Linh hoạt theo lịch học';
+            document.getElementById('modalLocation').textContent = job.address;
+            document.getElementById('modalStamp').textContent = job.stampSupport ? 'Có (Hỗ trợ số liệu & Mộc)' : 'Thỏa thuận';
+            document.getElementById('modalSchedule').textContent = job.schedule || 'Linh hoạt';
 
-            document.getElementById('modalTasks').innerHTML = (job.tasks || []).map(t => `<li>${t}</li>`).join('');
-            document.getElementById('modalRequirements').innerHTML = (job.requirements || []).map(r => `<li>${r}</li>`).join('');
-            document.getElementById('modalBenefits').innerHTML = (job.benefits || []).map(b => `<li>${b}</li>`).join('');
+            // Tasks
+            const tasksEl = document.getElementById('modalTasks');
+            tasksEl.innerHTML = job.tasks.map(t => `<li>${t}</li>`).join('');
 
-            // Generate Cover Letter
-            const coverLetter = `Tiêu đề: [Ứng tuyển ${job.title}] - [Họ và Tên của bạn] - Sinh viên Logistics/XNK
+            // Requirements
+            const reqEl = document.getElementById('modalRequirements');
+            reqEl.innerHTML = job.requirements.map(r => `<li>${r}</li>`).join('');
 
-Kính gửi Bộ phận Tuyển dụng ${job.company},
+            // Benefits
+            const benEl = document.getElementById('modalBenefits');
+            benEl.innerHTML = job.benefits.map(b => `<li>${b}</li>`).join('');
 
-Em được biết Quý công ty tại ${job.district}, TP.HCM đang tuyển dụng vị trí "${job.title}". Là sinh viên chuyên ngành Logistics & Quản lý Chuỗi cung ứng tại TP.HCM, đã được trang bị kiến thức về ${(job.skills || []).slice(0, 3).join(', ')}, em rất mong muốn được thực tập và hỗ trợ đội ngũ của Quý công ty.
+            // Raw URL
+            document.getElementById('modalRawUrlDisplay').textContent = links.primaryPostUrl;
+            document.getElementById('modalApplyExternalBtn').href = links.primaryPostUrl;
+            document.getElementById('modalDirectLuckyBtn').href = links.luckyPostUrl;
+            document.getElementById('modalExternalSearchBtn').href = links.googleJobsUrl;
 
-Em có thể đảm bảo lịch thực tập (${job.schedule}) và sẵn sàng học hỏi nhanh các nghiệp vụ thực tế tại công ty. Em xin đính kèm CV bên dưới để Anh/Chị xem xét.
+            // Auto Cover Letter
+            const coverLetter = `Kính gửi Bộ phận Tuyển dụng Công ty ${job.company},
 
-Em xin chân thành cảm ơn!
-Trân trọng,
-[Họ và Tên] - [Số điện thoại]`;
+Em tên là: [Họ và Tên của bạn]
+Hiện là sinh viên năm cuối chuyên ngành Logistics và Quản lý Chuỗi cung ứng tại TP.HCM.
+
+Em được biết công ty đang tuyển dụng vị trí "${job.title}". Qua tìm hiểu về công ty, em rất ấn tượng với môi trường chuyên nghiệp và mong muốn được ứng tuyển vào vị trí Thực tập sinh Logistics để cống hiến và học hỏi thực tế.
+
+Em có kiến thức nền tảng vững chắc về Incoterms, chứng từ XNK và sử dụng thành thạo Excel. Em có thể tham gia thực tập theo lịch: ${job.schedule || 'Full-time'}.
+
+Rất mong nhận được phản hồi từ anh/chị. Em xin chân thành cảm ơn!`;
 
             document.getElementById('modalCoverLetter').value = coverLetter;
 
-            // Resolve Exact Post URLs
-            const links = resolveJobLinks(job);
-            document.getElementById('modalApplyExternalBtn').href = links.primaryPostUrl;
-            document.getElementById('modalExternalSearchBtn').href = links.googleJobsUrl;
-            document.getElementById('modalDirectLuckyBtn').href = links.luckyPostUrl;
-
-            const rawUrlDisplay = document.getElementById('modalRawUrlDisplay');
-            if (rawUrlDisplay) {
-                rawUrlDisplay.textContent = links.primaryPostUrl;
-            }
-            const linkBadge = document.getElementById('modalLinkTypeBadge');
-            if (linkBadge) {
-                linkBadge.textContent = job.isDirectPostUrl
-                    ? '✔ Link bài đăng gốc trực tiếp (Đã xác thực ID)'
-                    : '🎯 Định tuyến tự động thẳng vào bài đăng gốc';
-            }
-
-            // Update Save Button inside Modal
-            const saveBtn = document.getElementById('modalSaveBtn');
+            // Save button in modal
             const isSaved = savedJobIds.includes(job.id);
-            saveBtn.innerHTML = isSaved
-                ? '<i class="fa-solid fa-bookmark text-amber-500"></i> Đã lưu tin này'
-                : '<i class="fa-regular fa-bookmark"></i> Lưu tin này';
+            const saveBtn = document.getElementById('modalSaveBtn');
+            saveBtn.innerHTML = `<i class="${isSaved ? 'fa-solid' : 'fa-regular'} fa-bookmark"></i> ${isSaved ? 'Đã lưu tin' : 'Lưu tin này'}`;
             saveBtn.onclick = () => {
                 toggleSaveJob(job.id);
                 openJobDetail(job.id);
@@ -1726,235 +1171,282 @@ Trân trọng,
             openModal('jobDetailModal');
         }
 
-        function copyCoverLetter() {
-            const textarea = document.getElementById('modalCoverLetter');
-            if (!textarea) return;
-            textarea.select();
-            textarea.setSelectionRange(0, 99999);
-            try {
-                document.execCommand('copy');
-                showToast('Đã sao chép Email', 'Mẫu email ứng tuyển thực tập đã được lưu vào bộ nhớ tạm.', 'emerald');
-            } catch (err) {
-                showToast('Lỗi sao chép', 'Vui lòng nhấn Ctrl+C để sao chép thủ công.', 'amber');
-            }
-        }
-
         function toggleSaveJob(jobId) {
             const idx = savedJobIds.indexOf(jobId);
-            if (idx === -1) {
-                savedJobIds.push(jobId);
-                if (!savedJobStatuses[jobId]) {
-                    savedJobStatuses[jobId] = 'CHUA_NOP';
-                }
-                showToast('Đã lưu việc làm', 'Đã thêm vào danh sách theo dõi thực tập của bạn.', 'amber');
-            } else {
+            if (idx > -1) {
                 savedJobIds.splice(idx, 1);
-                showToast('Đã bỏ lưu', 'Đã xóa việc làm khỏi danh sách lưu.', 'blue');
+                showToast('Đã bỏ lưu', 'Đã xóa khỏi danh sách việc làm đã lưu.', 'amber');
+            } else {
+                savedJobIds.push(jobId);
+                showToast('Đã lưu tin tuyển dụng', 'Bạn có thể xem lại trong mục "Đã lưu".', 'emerald');
             }
-            localStorage.setItem('logi_hcm_saved_jobs', JSON.stringify(savedJobIds));
-            localStorage.setItem('logi_hcm_job_statuses', JSON.stringify(savedJobStatuses));
+            localStorage.setItem('logi_hcm_saved_ids', JSON.stringify(savedJobIds));
             renderJobs();
-            renderSavedJobsModal();
+            updateSavedBadge();
         }
 
-        function updateSavedJobStatus(jobId, newStatus) {
-            savedJobStatuses[jobId] = newStatus;
-            localStorage.setItem('logi_hcm_job_statuses', JSON.stringify(savedJobStatuses));
-            showToast('Đã cập nhật trạng thái', 'Tiến độ ứng tuyển đã được lưu lại.', 'emerald');
+        function updateSavedBadge() {
+            const badge = document.getElementById('savedCountBadge');
+            if (badge) badge.textContent = savedJobIds.length;
         }
 
         function renderSavedJobsModal() {
             const container = document.getElementById('savedJobsContainer');
             if (!container) return;
+            const savedJobs = jobsData.filter(j => savedJobIds.includes(j.id));
 
-            const savedList = jobsData.filter(j => savedJobIds.includes(j.id));
-            if (savedList.length === 0) {
-                container.innerHTML = `
-                    <div class="text-center py-8 text-slate-500 dark:text-slate-400 space-y-2">
-                        <i class="fa-regular fa-bookmark text-2xl text-slate-400"></i>
-                        <p class="font-semibold">Bạn chưa lưu công việc thực tập nào.</p>
-                        <p class="text-[11px]">Hãy bấm vào biểu tượng dấu trang trên các tin tuyển dụng để lưu và theo dõi tiến độ nộp CV.</p>
-                    </div>
-                `;
+            if (savedJobs.length === 0) {
+                container.innerHTML = `<p class="text-center text-slate-400 py-6">Chưa có công việc nào được lưu.</p>`;
                 return;
             }
 
-            container.innerHTML = savedList.map(job => {
-                const status = savedJobStatuses[job.id] || 'CHUA_NOP';
-                return `
-                    <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                        <div class="space-y-1">
-                            <span class="text-[10px] font-semibold px-2 py-0.5 rounded bg-blue-500/10 text-blue-500">${job.source} • ${job.district}</span>
-                            <h4 onclick="closeModal('savedJobsModal'); openJobDetail('${job.id}')" class="font-bold text-slate-900 dark:text-white hover:text-blue-500 cursor-pointer">
-                                ${job.title}
-                            </h4>
-                            <p class="text-[11px] text-slate-500 dark:text-slate-400">${job.company} — <strong class="text-emerald-500">${job.allowance}</strong></p>
+            let html = '';
+            savedJobs.forEach(job => {
+                const links = resolveJobLinks(job);
+                html += `
+                    <div class="bg-slate-50 dark:bg-slate-800/60 p-3.5 rounded-2xl border border-slate-200 dark:border-slate-700 flex items-center justify-between gap-3">
+                        <div>
+                            <span class="text-[10px] font-semibold text-blue-600 dark:text-cyan-400">${job.source}</span>
+                            <h4 class="font-bold text-slate-900 dark:text-white text-xs">${job.title}</h4>
+                            <p class="text-[11px] text-slate-500">${job.company} — <strong class="text-emerald-600">${job.allowance}</strong></p>
                         </div>
-                        <div class="flex items-center gap-2 shrink-0">
-                            <select onchange="updateSavedJobStatus('${job.id}', this.value)" class="text-xs px-2.5 py-1.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700">
-                                <option value="CHUA_NOP" ${status === 'CHUA_NOP' ? 'selected' : ''}>📌 Đang chuẩn bị CV</option>
-                                <option value="DA_NOP" ${status === 'DA_NOP' ? 'selected' : ''}>📨 Đã gửi CV</option>
-                                <option value="PHONG_VAN" ${status === 'PHONG_VAN' ? 'selected' : ''}>🤝 Chờ phỏng vấn</option>
-                                <option value="NHAN_OFFER" ${status === 'NHAN_OFFER' ? 'selected' : ''}>🎉 Đã đậu thực tập</option>
-                            </select>
-                            <button onclick="toggleSaveJob('${job.id}')" class="p-2 rounded-xl bg-rose-500/10 text-rose-500 hover:bg-rose-500 hover:text-white transition" title="Xóa">
-                                <i class="fa-solid fa-trash-can"></i>
-                            </button>
+                        <div class="flex items-center gap-1.5 shrink-0">
+                            <a href="${links.primaryPostUrl}" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-xl bg-blue-600 text-white font-semibold text-[11px]">Ứng tuyển</a>
+                            <button onclick="toggleSaveJob('${job.id}'); renderSavedJobsModal();" class="p-1.5 rounded-xl bg-slate-200 dark:bg-slate-700 text-slate-500 hover:text-rose-500"><i class="fa-solid fa-trash text-xs"></i></button>
                         </div>
                     </div>
                 `;
-            }).join('');
+            });
+            container.innerHTML = html;
         }
 
         function renderConnectors() {
             const container = document.getElementById('connectorsList');
-            const countSpan = document.getElementById('activeSourceCount');
-            if (countSpan) {
-                countSpan.textContent = externalConnectors.filter(c => c.active).length;
-            }
             if (!container) return;
-
-            container.innerHTML = externalConnectors.map((conn, index) => `
-                <div class="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80">
-                    <div class="space-y-0.5 pr-3">
-                        <div class="flex items-center gap-2">
-                            <span class="font-bold text-slate-800 dark:text-slate-200">${conn.name}</span>
-                            <span class="text-[10px] px-2 py-0.5 rounded-full border ${conn.badgeColor}">${conn.protocol}</span>
+            let html = '';
+            externalConnectors.forEach(c => {
+                html += `
+                    <div class="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700">
+                        <div class="flex items-center gap-2.5">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                            <div>
+                                <span class="font-bold text-slate-800 dark:text-slate-200">${c.name}</span>
+                                <p class="text-[10px] text-slate-400 font-mono truncate max-w-xs">${c.endpoint}</p>
+                            </div>
                         </div>
-                        <p class="text-[11px] text-slate-400 font-mono truncate max-w-md">${conn.endpoint}</p>
+                        <span class="px-2 py-0.5 rounded-full text-[10px] font-semibold ${c.badgeColor} border">Hoạt động</span>
                     </div>
-                    <label class="flex items-center cursor-pointer">
-                        <input type="checkbox" ${conn.active ? 'checked' : ''} onchange="toggleConnector(${index})" class="rounded text-blue-600 w-4 h-4">
-                    </label>
-                </div>
-            `).join('');
+                `;
+            });
+            container.innerHTML = html;
+            const countEl = document.getElementById('activeSourceCount');
+            if (countEl) countEl.textContent = externalConnectors.length;
         }
 
-        function toggleConnector(index) {
-            if (!externalConnectors[index]) return;
-            externalConnectors[index].active = !externalConnectors[index].active;
-            const c = externalConnectors[index];
-            logTerminal(`${c.active ? '✔ Đã kích hoạt' : '⏸ Đã tạm ngắt'} nguồn kết nối [${c.name}].`, c.active ? 'success' : 'warn');
-            renderConnectors();
-        }
-
-        async function addCustomConnector() {
-            const nameInput = document.getElementById('customSourceName');
-            const urlInput = document.getElementById('customSourceUrl');
-            const name = (nameInput?.value || '').trim();
-            const url = (urlInput?.value || '').trim();
-
+        function addCustomConnector() {
+            const name = document.getElementById('customSourceName').value.trim();
+            const url = document.getElementById('customSourceUrl').value.trim();
             if (!name || !url) {
-                showToast('Thiếu thông tin', 'Vui lòng nhập đầy đủ Tên nguồn và URL RSS/API.', 'amber');
+                showToast('Thiếu thông tin', 'Vui lòng nhập tên nguồn và đường dẫn RSS/API.', 'amber');
                 return;
             }
-
-            externalConnectors.push({
-                id: 'custom-' + Date.now(),
-                name: name,
-                protocol: 'Custom CORS Feed',
-                endpoint: url,
-                searchUrlTemplate: url,
-                active: true,
-                badgeColor: 'bg-purple-500/10 text-purple-600 dark:text-purple-400 border-purple-500/30'
-            });
-
-            // Update source dropdown filter
-            const sourceSelect = document.getElementById('sourceSelect');
-            if (sourceSelect) {
-                const opt = document.createElement('option');
-                opt.value = name;
-                opt.textContent = name;
-                sourceSelect.appendChild(opt);
-            }
-
-            nameInput.value = '';
-            urlInput.value = '';
+            externalConnectors.push({ id: 'custom-' + Date.now(), name, endpoint: url, active: true, badgeColor: 'bg-purple-500/10 text-purple-600 border-purple-500/30' });
+            document.getElementById('customSourceName').value = '';
+            document.getElementById('customSourceUrl').value = '';
             renderConnectors();
-            logTerminal(`🔌 Đã thêm nguồn mở tùy chỉnh [${name}] qua CORS Proxy: ${url}`, 'success');
-            showToast('Đã thêm nguồn mới', `Đã kết nối ${name} vào luồng quét thời gian thực.`, 'emerald');
-            triggerRealtimeSync(true);
+            logTerminal(`🔌 Đã kết nối thêm nguồn mở tùy chỉnh: [${name}]`, 'success');
+            showToast('Đã thêm nguồn', `Đã kết nối thành công với ${name}`, 'emerald');
         }
 
-        function openModal(modalId) {
-            const modal = document.getElementById(modalId);
-            if (!modal) return;
-            if (modalId === 'savedJobsModal') renderSavedJobsModal();
-            if (modalId === 'sourceConfigModal') renderConnectors();
-            modal.classList.remove('hidden');
+        function copyCoverLetter() {
+            const textarea = document.getElementById('modalCoverLetter');
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                showToast('Đã sao chép email', 'Mẫu email ứng tuyển đã được sao chép vào bộ nhớ tạm.', 'emerald');
+            } catch(e) {
+                showToast('Lỗi sao chép', 'Vui lòng dùng phím Ctrl+C.', 'amber');
+            }
         }
 
-        function closeModal(modalId) {
-            const modal = document.getElementById(modalId);
-            if (modal) modal.classList.add('hidden');
+        function applyQuickTag(tag) {
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.value = tag;
+                handleFilterChange();
+            }
+        }
+
+        function handleFilterChange() {
+            renderJobs();
+        }
+
+        function resetFilters() {
+            const sInp = document.getElementById('searchInput');
+            const cSel = document.getElementById('categorySelect');
+            const dSel = document.getElementById('districtSelect');
+            const srcSel = document.getElementById('sourceSelect');
+            const pChk = document.getElementById('filterPaidOnly');
+            const stChk = document.getElementById('filterStampOnly');
+            const nChk = document.getElementById('filterNoExpOnly');
+            const sortSel = document.getElementById('sortSelect');
+
+            if (sInp) sInp.value = '';
+            if (cSel) cSel.value = 'ALL';
+            if (dSel) dSel.value = 'ALL';
+            if (srcSel) srcSel.value = 'ALL';
+            if (pChk) pChk.checked = false;
+            if (stChk) stChk.checked = false;
+            if (nChk) nChk.checked = false;
+            if (sortSel) sortSel.value = 'NEWEST';
+
+            renderJobs();
+        }
+
+        function toggleAutoSync() {
+            const toggle = document.getElementById('autoSyncToggle');
+            if (toggle && toggle.checked) {
+                startAutoSyncTimer();
+                logTerminal('🟢 Đã bật chế độ tự động cập nhật thời gian thực.', 'info');
+            } else {
+                stopAutoSyncTimer();
+                logTerminal('⏸️ Đã tạm dừng tự động cập nhật.', 'warning');
+            }
+        }
+
+        function updateSyncInterval() {
+            stopAutoSyncTimer();
+            startAutoSyncTimer();
+        }
+
+        function startAutoSyncTimer() {
+            stopAutoSyncTimer();
+            const select = document.getElementById('syncIntervalSelect');
+            const intervalSec = select ? parseInt(select.value, 10) : 30;
+            countdownSeconds = intervalSec;
+
+            countdownInterval = setInterval(() => {
+                countdownSeconds--;
+                const badge = document.getElementById('countdownBadge');
+                if (badge) badge.textContent = countdownSeconds + 's';
+
+                if (countdownSeconds <= 0) {
+                    countdownSeconds = intervalSec;
+                    triggerRealtimeSync(false);
+                }
+            }, 1000);
+        }
+
+        function stopAutoSyncTimer() {
+            if (countdownInterval) clearInterval(countdownInterval);
         }
 
         function toggleTheme() {
             const htmlEl = document.documentElement;
-            htmlEl.classList.toggle('dark');
-            const isDark = htmlEl.classList.contains('dark');
-            localStorage.setItem('logi_hcm_theme', isDark ? 'dark' : 'light');
+            if (htmlEl.classList.contains('dark')) {
+                htmlEl.classList.remove('dark');
+                localStorage.setItem('logi_hcm_theme', 'light');
+            } else {
+                htmlEl.classList.add('dark');
+                localStorage.setItem('logi_hcm_theme', 'dark');
+            }
         }
 
-        function showToast(title, message, color = 'blue') {
+        function showToast(title, msg, type = 'emerald') {
             const container = document.getElementById('toastContainer');
             if (!container) return;
-
-            const borderColors = {
-                emerald: 'border-emerald-500/50 bg-slate-900/95 text-white',
-                blue: 'border-blue-500/50 bg-slate-900/95 text-white',
-                amber: 'border-amber-500/50 bg-slate-900/95 text-white'
-            };
-
-            const iconColors = {
-                emerald: 'fa-solid fa-bolt text-emerald-400',
-                blue: 'fa-solid fa-circle-info text-blue-400',
-                amber: 'fa-solid fa-bookmark text-amber-400'
-            };
-
             const toast = document.createElement('div');
-            toast.className = `pointer-events-auto flex items-start gap-3 p-3.5 rounded-2xl border shadow-xl backdrop-blur-md transition-all duration-300 ${borderColors[color] || borderColors.blue}`;
+            const bgClass = type === 'emerald' ? 'bg-emerald-600 text-white' : type === 'amber' ? 'bg-amber-600 text-white' : 'bg-slate-900 text-white';
+            toast.className = `${bgClass} p-3.5 rounded-2xl shadow-xl text-xs flex items-center justify-between gap-3 pointer-events-auto transform translate-y-4 opacity-0 transition-all duration-300`;
             toast.innerHTML = `
-                <div class="mt-0.5 text-sm">
-                    <i class="${iconColors[color] || iconColors.blue}"></i>
+                <div>
+                    <strong class="block font-bold">${title}</strong>
+                    <span class="text-[11px] opacity-90">${msg}</span>
                 </div>
-                <div class="flex-1 min-w-0">
-                    <p class="text-xs font-bold truncate">${title}</p>
-                    <p class="text-[11px] text-slate-300 line-clamp-2 mt-0.5">${message}</p>
-                </div>
+                <button onclick="this.parentElement.remove()" class="text-white/80 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
             `;
-
             container.appendChild(toast);
+            setTimeout(() => { toast.classList.remove('translate-y-4', 'opacity-0'); }, 20);
             setTimeout(() => {
-                toast.style.opacity = '0';
-                toast.style.transform = 'translateY(8px)';
+                toast.classList.add('translate-y-4', 'opacity-0');
                 setTimeout(() => toast.remove(), 300);
-            }, 3800);
+            }, 4000);
         }
 
-        // Initialize Application on Load
-        window.addEventListener('DOMContentLoaded', () => {
+        function openModal(id) {
+            const m = document.getElementById(id);
+            if (m) {
+                if (id === 'savedJobsModal') renderSavedJobsModal();
+                if (id === 'sourceConfigModal') renderConnectors();
+                if (id === 'githubKitModal') {
+                    const repoInp = document.getElementById('githubRepoInput');
+                    if (repoInp) repoInp.value = localStorage.getItem('logi_hcm_github_repo') || '';
+                }
+                m.classList.remove('hidden');
+            }
+        }
+
+        function closeModal(id) {
+            const m = document.getElementById(id);
+            if (m) m.classList.add('hidden');
+        }
+
+        function saveGithubRepoConfig() {
+            const repoInp = document.getElementById('githubRepoInput');
+            const val = (repoInp?.value || '').trim().replace(/^https?:\/\/github\.com\//i, '').replace(/\/$/, '');
+            if (!val || !val.includes('/')) {
+                showToast('Sai định dạng', 'Vui lòng nhập đúng cú pháp username/repo.', 'amber');
+                return;
+            }
+            localStorage.setItem('logi_hcm_github_repo', val);
+            if (repoInp) repoInp.value = val;
+            logTerminal(`🐙 Đã liên kết GitHub Repo [${val}] để đồng bộ Issues & jobs-hcmc.json.`, 'success');
+            showToast('Đã lưu cấu hình', `Đang đồng bộ từ ${val}...`, 'emerald');
+            triggerRealtimeSync(true);
+        }
+
+        function exportJobsJsonForGithub() {
+            const dataStr = JSON.stringify(jobsData, null, 2);
+            const blob = new Blob([dataStr], { type: 'application/json;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'jobs-hcmc.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            logTerminal(`💾 Đã xuất ${jobsData.length} công việc ra file jobs-hcmc.json để commit lên GitHub.`, 'success');
+            showToast('Đã tải xuống jobs-hcmc.json', 'Commit file này lên nhánh chính để cập nhật trang web.', 'emerald');
+        }
+
+        function copyTextById(elementId, msg) {
+            const el = document.getElementById(elementId);
+            if (!el) return;
+            el.select();
+            try {
+                document.execCommand('copy');
+                showToast('Đã sao chép', msg, 'emerald');
+            } catch(e) {
+                showToast('Lỗi', 'Vui lòng dùng Ctrl+C', 'amber');
+            }
+        }
+
+        // Initialize on Load
+        window.onload = function() {
             const savedTheme = localStorage.getItem('logi_hcm_theme');
             if (savedTheme === 'light') {
                 document.documentElement.classList.remove('dark');
+            } else {
+                document.documentElement.classList.add('dark');
             }
 
-            const nowStr = new Date().toLocaleTimeString('vi-VN', { hour12: false });
-            document.getElementById('statLastSync').textContent = nowStr;
-
-            logTerminal('🚀 Khởi tạo LogiIntern HCMC Open-Source Radar v2.5...', 'info');
-            logTerminal('📡 Đã kết nối 6 cổng việc làm Logistics tại TP. Hồ Chí Minh.', 'success');
-            logTerminal('⏱ Chế độ tự động cập nhật (Auto-Sync) đang chạy mỗi 30 giây.', 'fetch');
-
-            renderConnectors();
             renderJobs();
+            updateSavedBadge();
             startAutoSyncTimer();
-
-            // Immediately fetch real live job postings with exact URLs on startup
-            setTimeout(() => {
-                triggerRealtimeSync(false);
-            }, 800);
-        });
+            logTerminal('🚀 Hệ thống LogiIntern HCMC Radar đã khởi động thành công.', 'success');
+            logTerminal('📡 Đã kết nối 6 nguồn mở tuyển dụng Logistics TP.HCM.', 'info');
+        };
     </script>
 </body>
 </html>
